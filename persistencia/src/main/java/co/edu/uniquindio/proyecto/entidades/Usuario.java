@@ -6,6 +6,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Entidad Usuario.
+ *
+ * @author Mauricio Martinez Mateus.
+ * @author Kevin Orlando Franco Ballejo
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @Entity
 @Getter
 @Setter
@@ -48,6 +56,15 @@ public class Usuario extends Persona implements Serializable {
     @ToString.Exclude
     private List<Producto> productosFavoritos;
 
+    /**
+     * Constructor con los parametros obligatorios
+     * @param codigo
+     * @param nombre
+     * @param email
+     * @param password
+     * @param username
+     * @param codigoCiudad
+     */
     public Usuario(String codigo, String nombre, String email, String password, String username, Ciudad codigoCiudad) {
         super(codigo, nombre, email, password);
         this.username = username;

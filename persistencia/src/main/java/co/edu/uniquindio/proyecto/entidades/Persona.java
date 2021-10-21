@@ -6,7 +6,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-
+/**
+ * Entidad Persona.
+ *
+ * @author Mauricio Martinez Mateus.
+ * @author Kevin Orlando Franco Ballejo
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @Getter
 @Setter
 @NoArgsConstructor

@@ -9,6 +9,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Entidad administrador.
+ *
+ * @author Mauricio Martinez Mateus.
+ * @author Kevin Orlando Franco Ballejo
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @Entity
 @Getter
 @Setter
@@ -26,6 +34,11 @@ public class Categoria implements Serializable {
     @ManyToMany(mappedBy = "categoriasProducto")
     private List<Producto> productos;
 
+    /**
+     * Constructor con los datos obligatorios.
+     * @param codigo Código de la categoría.
+     * @param nombre Nombre de la categoría.
+     */
     public Categoria(String codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
