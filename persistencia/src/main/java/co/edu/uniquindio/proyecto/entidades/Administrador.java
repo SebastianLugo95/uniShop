@@ -1,6 +1,5 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
