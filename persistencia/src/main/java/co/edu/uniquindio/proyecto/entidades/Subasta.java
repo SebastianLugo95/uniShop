@@ -12,6 +12,14 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Entidad Subasta.
+ *
+ * @author Mauricio Martinez Mateus.
+ * @author Kevin Orlando Franco Ballejo
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @Entity
 @Getter
 @Setter
@@ -33,6 +41,12 @@ public class Subasta implements Serializable {
     @ToString.Exclude
     private List<SubastaUsuario> subastasUsuario;
 
+    /**
+     * Constructor con los parametros obligatorios
+     * @param codigo
+     * @param codigoProducto
+     * @param fechaLimite
+     */
     public Subasta(String codigo, Producto codigoProducto, LocalDate fechaLimite) {
         this.codigo = codigo;
         this.codigoProducto = codigoProducto;

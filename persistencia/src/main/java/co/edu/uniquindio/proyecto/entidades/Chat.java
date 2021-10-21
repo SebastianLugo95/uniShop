@@ -9,6 +9,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Entidad Chat.
+ *
+ * @author Mauricio Martinez Mateus.
+ * @author Kevin Orlando Franco Ballejo
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @Entity
 @Getter
 @Setter
@@ -32,6 +40,12 @@ public class Chat implements Serializable {
     @ToString.Exclude
     private List<Mensaje> mensajesChat;
 
+    /**
+     * Constructor con los datos obligatorios
+     * @param codigo
+     * @param usuarioComprador
+     * @param codigoProducto
+     */
     public Chat(String codigo,  Usuario usuarioComprador, Producto codigoProducto){
         this.codigo = codigo;
         this.usuarioComprador = usuarioComprador;
