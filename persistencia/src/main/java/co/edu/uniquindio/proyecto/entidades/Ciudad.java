@@ -6,6 +6,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Entidad ciudad.
+ *
+ * @author Mauricio Martinez Mateus.
+ * @author Kevin Orlando Franco Ballejo
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @Entity
 @Getter
 @Setter
@@ -28,6 +36,11 @@ public class Ciudad implements Serializable {
     @ToString.Exclude
     private List<Usuario> usuariosCiudad;
 
+    /**
+     * Constructor con los datos obligatorios.
+     * @param codigo Código de la ciudad.
+     * @param nombre Nombre de la ciudad.
+     */
     public Ciudad(String codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;

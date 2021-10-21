@@ -10,6 +10,14 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Entidad compra.
+ *
+ * @author Mauricio Martinez Mateus.
+ * @author Kevin Orlando Franco Ballejo
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @Entity
 @Getter
 @Setter
@@ -35,6 +43,13 @@ public class Compra implements Serializable {
     @ToString.Exclude
     private List<DetalleCompra> detallesCompra;
 
+    /**
+     * Constructor con los datos obligatorios.
+     * @param codigo Código de la compra.
+     * @param codigoUsuario Código del usuario que hizo la compra.
+     * @param fechaCompra Fecha de la compra.
+     * @param medioPago Medio de pago.
+     */
     public Compra(String codigo, Usuario codigoUsuario, LocalDate fechaCompra, String medioPago) {
         this.codigo = codigo;
         this.codigoUsuario = codigoUsuario;

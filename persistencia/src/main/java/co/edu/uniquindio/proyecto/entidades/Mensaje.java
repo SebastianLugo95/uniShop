@@ -10,6 +10,14 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
+/**
+ * Entidad mensaje.
+ *
+ * @author Mauricio Martinez Mateus.
+ * @author Kevin Orlando Franco Ballejo
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @Entity
 @Getter
 @Setter
@@ -35,6 +43,14 @@ public class Mensaje implements Serializable {
     @Column(nullable = false)
     private LocalDate fecha;
 
+    /**
+     * Constructor con los datos obligatorios.
+     * @param codigo Código del mensaje.
+     * @param codigoChat Código del chat al que se envía el mensaje.
+     * @param mensaje Contenido del mensaje.
+     * @param emisor Usuario que envio el mensaje.
+     * @param fecha Fecha de envio.
+     */
     public Mensaje(String codigo, Chat codigoChat, String mensaje, Usuario emisor, LocalDate fecha) {
         this.codigo = codigo;
         this.codigoChat = codigoChat;
