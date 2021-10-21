@@ -17,19 +17,44 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
+/**
+ *
+ * Clase encargarda de las pruebas uitarias para el CRUD del repositorio Chat.
+ *
+ * @author Kevin Orlando Franco Ballejo.
+ * @author Mauricio Martinez Mateus.
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class ChatTest {
 
+    /**
+     * Inyección de repositorio UsuarioRepo.
+     */
     @Autowired
     private UsuarioRepo usuarioRepo;
 
+    /**
+     * Inyección de repositorio ProductoRepo.
+     */
     @Autowired
     private ProductoRepo productoRepo;
 
+    /**
+     * Inyección de repositorio ChatRepo.
+     */
     @Autowired
     private ChatRepo chatRepo;
 
+    /**
+     * Prueba unitaria para registrar un registro a la tabla Chat.
+     *
+     * Primero se debe consultar un usuario y un producto para asociarlos al chat.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo chat.sql.
+     */
     @Test
     @Sql("classpath:chat.sql")
     public void crearChat(){
@@ -41,6 +66,11 @@ public class ChatTest {
         Assertions.assertNotNull(chatGuardado);
     }
 
+    /**
+     * Prueba unitaria para eliminar un registro por su ID de la tabla Chat.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo chat.sql.
+     */
     @Test
     @Sql("classpath:chat.sql")
     public void eliminarChat(){
@@ -51,6 +81,11 @@ public class ChatTest {
         Assertions.assertNull(chatEliminado);
     }
 
+    /**
+     * Prueba unitaria para actualizar un registro buscado por su ID en la tabla Chat.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo chat.sql.
+     */
     @Test
     @Sql("classpath:chat.sql")
     public void actualizarChat(){
@@ -63,6 +98,11 @@ public class ChatTest {
         Assertions.assertEquals(producto, chatActualizado.getCodigoProducto());
     }
 
+    /**
+     * Prueba unitaria para consultar todos los registros de la tabla Chat.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo chat.sql.
+     */
     @Test
     @Sql("classpath:chat.sql")
     public void listarChats(){
