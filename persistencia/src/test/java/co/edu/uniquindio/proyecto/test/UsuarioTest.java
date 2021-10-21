@@ -13,16 +13,37 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
+/**
+ * Clase encargada de las pruebas unitarias para el CRUD del repositorio Usuario.
+ *
+ * @author Mauricio Martinez Mateus.
+ * @author Kevin Orlando Franco Ballejo
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UsuarioTest {
 
+    /**
+     * Inyección del repositorio UsuarioRepo.
+     */
     @Autowired
     private UsuarioRepo usuarioRepo;
 
+    /**
+     * Inyección del repositorio CiudadRepo.
+     */
     @Autowired
     private CiudadRepo ciudadRepo;
 
+    /**
+     * Prueba unitaria para insertar un registro a la tabla Usuario.
+     *
+     * Primero se debe consultar una ciudad para asociarla al usuario.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo usuarios.sql
+     */
     @Test
     @Sql("classpath:usuarios.sql")
     public void registrarTest(){
@@ -34,6 +55,11 @@ public class UsuarioTest {
 
     }
 
+    /**
+     * Prueba unitaria para eliminar por su ID un registro de la tabla Usuario.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo usuarios.sql.
+     */
     @Test
     @Sql("classpath:usuarios.sql")
     public void eliminarTest(){
@@ -44,6 +70,11 @@ public class UsuarioTest {
         Assertions.assertNull(usuarioEliminado);
     }
 
+    /**
+     * Prueba unitaria para actualizar un registro buscado por su ID en la tabla Usuario.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo usuarios.sql.
+     */
     @Test
     @Sql("classpath:usuarios.sql")
     public void actualizarTest(){
@@ -55,6 +86,11 @@ public class UsuarioTest {
         Assertions.assertEquals("11111", usuarioActualizado.getPassword());
     }
 
+    /**
+     * Prueba unitaria para consultar todos los registros de la tabla Usuario.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo usuarios.sql.
+     */
     @Test
     @Sql("classpath:usuarios.sql")
     public void listarTest(){

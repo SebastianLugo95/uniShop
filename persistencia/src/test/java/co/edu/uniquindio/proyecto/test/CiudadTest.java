@@ -1,6 +1,5 @@
 package co.edu.uniquindio.proyecto.test;
 
-import co.edu.uniquindio.proyecto.entidades.Categoria;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
 import org.junit.jupiter.api.Assertions;
@@ -12,13 +11,27 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
+/**
+ * Clase encargada de las pruebas unitarias para el CRUD del repositorio Ciudad.
+ *
+ * @author Mauricio Martinez Mateus.
+ * @author Kevin Orlando Franco Ballejo
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class CiudadTest {
 
+    /**
+     * Inyección del repositorio CiudadRepo.
+     */
     @Autowired
     private CiudadRepo ciudadRepo;
 
+    /**
+     * Prueba unitaria para insertar un registro a la tabla Ciudad.
+     */
     @Test
     public void crearCiudad(){
         Ciudad ciudad = new Ciudad("9", "Manizales");
@@ -27,6 +40,11 @@ public class CiudadTest {
         Assertions.assertNotNull(ciudadGuardada);
     }
 
+    /**
+     * Prueba unitaria para eliminar por su ID un registro de la tabla Ciudad.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo ciudad.sql.
+     */
     @Test
     @Sql("classpath:ciudad.sql")
     public void eliminarCiudad(){
@@ -38,6 +56,11 @@ public class CiudadTest {
 
     }
 
+    /**
+     * Prueba unitaria para actualizar un registro buscado por su ID en la tabla Ciudad.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo ciudad.sql.
+     */
     @Test
     @Sql("classpath:ciudad.sql")
     public void actualizarCiudad(){
@@ -49,6 +72,11 @@ public class CiudadTest {
         Assertions.assertEquals("Valledupar", ciudadActualizada.getNombre());
     }
 
+    /**
+     * Prueba unitaria para consultar todos los registros de la tabla Ciudad.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo ciudad.sql.
+     */
     @Test
     @Sql("classpath:ciudad.sql")
     public void listarCiudad(){
