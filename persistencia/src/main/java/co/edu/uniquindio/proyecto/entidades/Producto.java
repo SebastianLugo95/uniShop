@@ -10,6 +10,14 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Entidad Producto.
+ *
+ * @author Mauricio Martinez Mateus.
+ * @author Kevin Orlando Franco Ballejo
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @Entity
 @Getter
 @Setter
@@ -75,6 +83,18 @@ public class Producto implements Serializable {
     @ToString.Exclude
     private List<Chat> chatsProducto;
 
+    /**
+     * Constructor con los datos obligatorios.
+     * @param codigo Código del producto.
+     * @param nombre Nombre del producto.
+     * @param unidades Unidades disponibles.
+     * @param descripcion Descripción del producto.
+     * @param precio Precio del producto.
+     * @param fechaLimite Fecha del producto.
+     * @param descuento Descuento del producto.
+     * @param codigoVendedor Código del vendedor.
+     * @param codigoCiudad Codigo de la ciudad.
+     */
     public Producto(String codigo, String nombre, Integer unidades, String descripcion, Double precio, LocalDate fechaLimite, Float descuento, Usuario codigoVendedor, Ciudad codigoCiudad) {
         this.codigo = codigo;
         this.nombre = nombre;
