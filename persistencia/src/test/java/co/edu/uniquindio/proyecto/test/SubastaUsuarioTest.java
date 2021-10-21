@@ -16,19 +16,44 @@ import org.springframework.test.context.jdbc.Sql;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ *
+ * Clase encargarda de las pruebas uitarias para el CRUD del repositorio SubastaUsuario.
+ *
+ * @author Kevin Orlando Franco Ballejo.
+ * @author Mauricio Martinez Mateus.
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class SubastaUsuarioTest {
 
+    /**
+     * Inyección de repositorio UsuarioRepo.
+     */
     @Autowired
     private UsuarioRepo usuarioRepo;
 
+    /**
+     * Inyección de repositorio SubastaRepo.
+     */
     @Autowired
     private SubastaRepo subastaRepo;
 
+    /**
+     * Inyección de repositorio SubastaUsuarioRepo.
+     */
     @Autowired
     private SubastaUsuarioRepo subastaUsuarioRepo;
 
+    /**
+     * Prueba unitaria para insertar un registro a la tabla SubastaUsuario.
+     *
+     * Primero se debe consultar un usuario y una subasta para asociarlos a la SubustaUsuario.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo subastaUsuario.sql.
+     */
     @Test
     @Sql("classpath:subastaUsuario.sql")
     public void crearSubastaUsuario() {
@@ -40,6 +65,11 @@ public class SubastaUsuarioTest {
         Assertions.assertNotNull(subastaUsuarioGuardada);
     }
 
+    /**
+     * Prueba unitaria para eliminar un registro por su ID de la tabla SubastaUsuario.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo subastaUsuario.sql.
+     */
     @Test
     @Sql("classpath:subastaUsuario.sql")
     public void eliminarSubastaUsuario() {
@@ -50,6 +80,11 @@ public class SubastaUsuarioTest {
         Assertions.assertNull(subastaUsuarioEliminado);
     }
 
+    /**
+     * Prueba unitaria para actualizar un registro buscado por su ID en la tabla SubastaUsuario.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo subastaUsuario.sql.
+     */
     @Test
     @Sql("classpath:subastaUsuario.sql")
     public void actualizarSubastaUsuario() {
@@ -62,14 +97,17 @@ public class SubastaUsuarioTest {
 
     }
 
+    /**
+     * Prueba unitaria para consultar todos los registros de la tabla SubastaUsuario.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo subastaUsuario.sql.
+     */
     @Test
     @Sql("classpath:subastaUsuario.sql")
     public void listarSusbastaUsuario() {
         List<SubastaUsuario> subastasUsuario = subastaUsuarioRepo.findAll();
         Assertions.assertEquals(3, subastasUsuario.size());
-
     }
-
 }
 
 

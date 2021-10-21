@@ -17,19 +17,44 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+/**
+ *
+ * Clase encargarda de las pruebas uitarias para el CRUD del repositorio Producto.
+ *
+ * @author Kevin Orlando Franco Ballejo.
+ * @author Mauricio Martinez Mateus.
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class ProductoTest {
 
+    /**
+     * Inyección de repositorio ProductoRepo.
+     */
     @Autowired
     private ProductoRepo productoRepo;
 
+    /**
+     * Inyección de repositorio UsuarioRepo.
+     */
     @Autowired
     private UsuarioRepo usuarioRepo;
 
+    /**
+     * Inyección de repositorio CiudadRepo.
+     */
     @Autowired
     private CiudadRepo ciudadRepo;
 
+    /**
+     * Prueba unitaria para insertar un registro a la tabla Producto.
+     *
+     * Primero se debe consultar una ciudad y un usuario para asociarlos al producto.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo producto.sql.
+     */
     @Test
     @Sql("classpath:productos.sql")
     public void crearProducto() {
@@ -41,6 +66,11 @@ public class ProductoTest {
         Assertions.assertNotNull(productoGuardado);
     }
 
+    /**
+     * Prueba unitaria para eliminar un registro por su ID de la tabla Producto.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo producto.sql.
+     */
     @Test
     @Sql("classpath:productos.sql")
     public void eliminarProducto(){
@@ -52,6 +82,11 @@ public class ProductoTest {
 
     }
 
+    /**
+     * Prueba unitaria para actualizar un registro buscado por su ID en la tabla Producto.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo producto.sql.
+     */
     @Test
     @Sql("classpath:productos.sql")
     public void actualizarProducto(){
@@ -63,6 +98,11 @@ public class ProductoTest {
         Assertions.assertEquals("Nintendo Switch", productoActualizado.getNombre());
     }
 
+    /**
+     * Prueba unitaria para consultar todos los registros de la tabla Producto.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo producto.sql.
+     */
     @Test
     @Sql("classpath:productos.sql")
     public void listarProductos(){

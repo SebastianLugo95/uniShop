@@ -16,19 +16,44 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
+/**
+ *
+ * Clase encargarda de las pruebas uitarias para el CRUD del repositorio DetalleCompra.
+ *
+ * @author Kevin Orlando Franco Ballejo.
+ * @author Mauricio Martinez Mateus.
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class DetalleCompraTest {
 
+    /**
+     * Inyección de repositorio ProductoRepo.
+     */
     @Autowired
     private ProductoRepo productoRepo;
 
+    /**
+     * Inyección de repositorio CompraRepo.
+     */
     @Autowired
     private CompraRepo compraRepo;
 
+    /**
+     * Inyección de repositorio DetalleCompraRepo.
+     */
     @Autowired
     private DetalleCompraRepo detalleCompraRepo;
 
+    /**
+     * Prueba unitaria para insertar un registro a la tabla DetalleCompra.
+     *
+     * Primero se debe consultar un producto y una compra para asociarlos al detalleCompra.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo detalleCompra.sql.
+     */
     @Test
     @Sql("classpath:detalleCompra.sql")
     public void crearDetalleCompra(){
@@ -40,6 +65,12 @@ public class DetalleCompraTest {
         Assertions.assertNotNull(detalleCompraGuardada);
     }
 
+
+    /**
+     * Prueba unitaria para eliminar un registro por su ID de la tabla DetalleCompra.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo detalleCompra.sql.
+     */
     @Test
     @Sql("classpath:detalleCompra.sql")
     public void eliminarDetalleCompra(){
@@ -50,6 +81,11 @@ public class DetalleCompraTest {
         Assertions.assertNull(detalleCompraEliminada);
     }
 
+    /**
+     * Prueba unitaria para actualizar un registro buscado por su ID en la tabla DetalleCompra.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo detalleCompra.sql.
+     */
     @Test
     @Sql("classpath:detalleCompra.sql")
     public void actualizarDetalleCompra(){
@@ -61,13 +97,15 @@ public class DetalleCompraTest {
         Assertions.assertEquals(25, detalleActualizado.getUnidades());
     }
 
+    /**
+     * Prueba unitaria para consultar todos los registros de la tabla DetalleCompra.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo detalleCompra.sql.
+     */
     @Test
     @Sql("classpath:detalleCompra.sql")
     public void listarDetalleCompra(){
         List<DetalleCompra> detallesCompra = detalleCompraRepo.findAll();
         Assertions.assertEquals(3, detallesCompra.size());
     }
-
-
-
 }
