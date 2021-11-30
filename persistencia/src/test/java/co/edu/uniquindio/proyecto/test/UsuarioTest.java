@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.test;
 
+import co.edu.uniquindio.proyecto.dto.UsuarioYProducto;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
@@ -9,9 +10,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Clase encargada de las pruebas unitarias para el CRUD del repositorio Usuario.
@@ -96,6 +103,77 @@ public class UsuarioTest {
     public void listarTest(){
         List<Usuario> usuarios = usuarioRepo.findAll();
         Assertions.assertEquals(3, usuarios.size());
+    }
+
+    /**
+     * Prueba unitaria para filtar nombres de la tabla Usuario.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo usuarios.sql.
+     */
+    @Test
+    @Sql("classpath:usuarios.sql")
+    public void filtarNombreTest(){
+        List<Usuario> lista = usuarioRepo.findAllByNombreContains("Carlos");
+        lista.forEach(usuario ->  System.out.println(usuario));
+    }
+
+    /**
+     * Prueba unitaria para filtar email de la tabla Usuario.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo usuarios.sql.
+     */
+    @Test
+    @Sql("classpath:usuarios.sql")
+    public void filtarEmailTest(){
+        Optional<Usuario> usuario = usuarioRepo.findByEmail("carlos@gmail.com");
+
+        if(usuario.isPresent()){
+            System.out.println(usuario.get());
+        }
+        else{
+            System.out.println("No existe ese correo");
+        }
+
+    }
+
+    /**
+     * Prueba unitaria para paginar los usuarios de la tabla Usuario.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo usuarios.sql.
+     */
+    @Test
+    @Sql("classpath:usuarios.sql")
+    public void paginarListaTest(){
+
+        Pageable paginador = PageRequest.of(0, 2);
+
+        Page<Usuario> lista = usuarioRepo.findAll(paginador);
+        System.out.println(lista.stream().collect(Collectors.toList()));
+    }
+
+    /**
+     * Prueba unitaria para ordenar los usuarios de la tabla Usuario.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo usuarios.sql.
+     */
+    @Test
+    @Sql("classpath:usuarios.sql")
+    public void ordenarListaTest(){
+
+        List<Usuario> lista = usuarioRepo.findAll(Sort.by("nombre"));
+        System.out.println(lista);
+    }
+
+    /**
+     * Prueba unitaria para obtener los usuarios y sus productos.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo usuarios.sql.
+     */
+    @Test
+    @Sql("classpath:usuarios.sql")
+    public void listarUsuariosYProductos(){
+        List<UsuarioYProducto> lista = usuarioRepo.listarUsuarioYProductos();
+        lista.forEach(System.out::println);
     }
 
 }

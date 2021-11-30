@@ -39,7 +39,7 @@ public class Comentario implements Serializable {
     @Column(nullable = false)
     private String mensaje;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String respuesta;
 
     @Column(nullable = false)

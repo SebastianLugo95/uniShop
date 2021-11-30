@@ -22,6 +22,14 @@ insert into producto values ("2", "Sony Play Station 5", 30.5, "2021/08/25", "PL
 insert into producto values ("3", "Zapatillas Nike", 30.5, "2021/10/30", "Zapatos Nike", 2000000, 30, "1", "125");
 
 /*
+ Se llena la tabla Categoria con los datos correspondientes:
+ código y nombre.
+*/
+insert into categoria values ("1", "Hogar");
+insert into categoria values ("2", "Tecnologia");
+insert into categoria values ("3", "Comida");
+
+/*
  Se llena la tabla Subasta con los datos correspondientes:
  código, fecha límite y producto.
  */

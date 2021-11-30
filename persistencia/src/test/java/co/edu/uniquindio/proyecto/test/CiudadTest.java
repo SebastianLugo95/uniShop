@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
+import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -82,6 +83,18 @@ public class CiudadTest {
     public void listarCiudad(){
         List<Ciudad> ciudades = ciudadRepo.findAll();
         Assertions.assertEquals(3, ciudades.size());
+    }
+
+    /**
+     * Prueba unitaria para consultar los usuarios que viven en una determindad ciudad.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo ciudad.sql.
+     */
+    @Test
+    @Sql("classpath:ciudad.sql")
+    public void listarUsuarios(){
+        List<Usuario> usuarios = ciudadRepo.listarUsuarios("Armenia");
+        Assertions.assertEquals(2, usuarios.size());
     }
 
 }

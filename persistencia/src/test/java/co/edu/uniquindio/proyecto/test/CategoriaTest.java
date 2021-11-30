@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.test;
 
 
 import co.edu.uniquindio.proyecto.entidades.Categoria;
+import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.repositorios.CategoriaRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -83,6 +84,30 @@ public class CategoriaTest {
         List<Categoria> categorias = categoriaRepo.findAll();
         Assertions.assertEquals(3, categorias.size());
 
+    }
+
+    /**
+     * Prueba unitaria para consultar todas las categorias por calificación.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo comentario.sql.
+     */
+    @Test
+    @Sql("classpath:comentario.sql")
+    public void listarCategoriasPorCalificacion(){
+        List<Object[]> lista = categoriaRepo.listarCategoriasPorCalificacion();
+        System.out.println(lista);
+    }
+
+    /**
+     * Prueba unitaria para consultar el producto mas vendido de una categoria.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo comentario.sql.
+     */
+    @Test
+    @Sql("classpath:comentario.sql")
+    public void listarProductoMasVendidoPorCategoria(){
+        List<Object[]> lista = categoriaRepo.productoMasVendidoPorCategoria("1");
+        lista.forEach(r -> System.out.println(r[0] + " ------> " + r[1]));
     }
 
 }

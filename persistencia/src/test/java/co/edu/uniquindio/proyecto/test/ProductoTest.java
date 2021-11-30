@@ -1,6 +1,8 @@
 package co.edu.uniquindio.proyecto.test;
 
+import co.edu.uniquindio.proyecto.dto.ProductoValido;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
+import co.edu.uniquindio.proyecto.entidades.Comentario;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
@@ -14,7 +16,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -110,16 +112,77 @@ public class ProductoTest {
         Assertions.assertEquals(3, productos.size());
     }
 
+    /**
+     * Prueba unitaria para consultar todos los comentarios de un producto sin respuesta.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo producto.sql.
+     */
+    @Test
+    @Sql("classpath:productos.sql")
+    public void listarComentariosSinRespuesta(){
+        List<Comentario> lista = productoRepo.listarComentariosSinRespuesta("2");
+        System.out.println(lista);
+    }
 
+    /**
+     * Prueba unitaria para consultar el nombre de vendedor por codigo de producto.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo producto.sql.
+     */
+    @Test
+    @Sql("classpath:productos.sql")
+    public void obtenerNombreVendedorTest(){
+        String nombre = productoRepo.obtenerNombreVendedor("2");
+        Assertions.assertEquals("Maria", nombre);
+    }
 
+    /**
+     * Prueba unitaria para obtener los productos favoritos de un usuario.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo producto.sql.
+     */
+    @Test
+    @Sql("classpath:productos.sql")
+    public void obtenerFavoritosUsuarioTest(){
+        List<Producto> lista = usuarioRepo.obtenerProductosFavoritos("carlos@gmail.com");
+        Assertions.assertEquals(2, lista.size());
+    }
 
+    /**
+     * Prueba unitaria para obtener los productos y comentarios.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo producto.sql.
+     */
+    @Test
+    @Sql("classpath:productos.sql")
+    public void obtenerProductosYComentariosTest(){
+        List<Object[]> lista = productoRepo.listarProductosYComentarios();
+        lista.forEach(objects -> System.out.println(objects[0]+"---"+objects[1]));
+        Assertions.assertEquals(3, lista.size());
+    }
 
+    /**
+     * Prueba unitaria para obtener los comentarios de un usuario.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo producto.sql.
+     */
+    @Test
+    @Sql("classpath:productos.sql")
+    public void listarUsuariosComentariosTest(){
+        List<Usuario> usuarios = productoRepo.listarUsuariosComentarios(1);
+        usuarios.forEach(System.out::println);
+    }
 
-
-
-
-
-
-
+    /**
+     * Prueba unitaria para obtener los productos con fecha valida.
+     *
+     * Se integran datos de la prueba con las instrucciones SQL del archivo producto.sql.
+     */
+    @Test
+    @Sql("classpath:productos.sql")
+    public void listarProductosValidosTest(){
+        List<ProductoValido> productos = productoRepo.listarProductosValidos(LocalDateTime.now());
+        productos.forEach(System.out::println);
+    }
 
 }
