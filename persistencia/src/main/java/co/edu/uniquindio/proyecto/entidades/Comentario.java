@@ -9,6 +9,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * Entidad Comentario.
+ *
+ * @author Mauricio Martinez Mateus.
+ * @author Kevin Orlando Franco Ballejo
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @Entity
 @Getter
 @Setter
@@ -31,7 +39,7 @@ public class Comentario implements Serializable {
     @Column(nullable = false)
     private String mensaje;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String respuesta;
 
     @Column(nullable = false)
@@ -40,6 +48,16 @@ public class Comentario implements Serializable {
     @Column(nullable = false)
     private Integer calificacion;
 
+    /**
+     * Constructor con los datos obligatorios
+     * @param codigo
+     * @param codigoProducto
+     * @param codigoUsuario
+     * @param mensaje
+     * @param respuesta
+     * @param fechaComentario
+     * @param calificacion
+     */
     public Comentario(String codigo, Producto codigoProducto, Usuario codigoUsuario, String mensaje, String respuesta, LocalDate fechaComentario, Integer calificacion) {
         this.codigo = codigo;
         this.codigoProducto = codigoProducto;

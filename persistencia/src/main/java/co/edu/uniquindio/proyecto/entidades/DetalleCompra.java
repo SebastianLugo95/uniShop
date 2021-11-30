@@ -8,6 +8,14 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Entidad DetalleCompra.
+ *
+ * @author Mauricio Martinez Mateus.
+ * @author Kevin Orlando Franco Ballejo
+ * @author Sebastian Lugo Mateus.
+ * @author Stiven Herrera Sierra.
+ */
 @Entity
 @Getter
 @Setter
@@ -33,6 +41,14 @@ public class DetalleCompra implements Serializable {
     @Column(nullable = false)
     private Double precioProducto;
 
+    /**
+     * Constructor con los datos obligatorios
+     * @param codigo
+     * @param codigoCompra
+     * @param codigoProducto
+     * @param unidades
+     * @param precioProducto
+     */
     public DetalleCompra(String codigo, Compra codigoCompra, Producto codigoProducto, Integer unidades, Double precioProducto) {
         this.codigo = codigo;
         this.codigoCompra = codigoCompra;

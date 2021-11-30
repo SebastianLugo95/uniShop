@@ -98,4 +98,16 @@ public class SubastaTest {
         Assertions.assertEquals(3, subastas.size());
 
     }
+
+    /**
+     * Prueba unitaria para listar los productos de una subasta por categoria.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo subasta.sql.
+     */
+    @Test
+    @Sql("classpath:subasta.sql")
+    public void listarProductosSubastaPorCategoria(){
+        List<Object[]> lista = subastaRepo.productosEnSubastaPorCategoria();
+        System.out.println(lista);
+    }
 }

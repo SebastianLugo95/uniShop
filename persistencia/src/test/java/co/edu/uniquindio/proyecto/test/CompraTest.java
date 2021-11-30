@@ -95,4 +95,16 @@ public class CompraTest {
         Assertions.assertEquals(3, compras.size());
     }
 
+    /**
+     * Prueba unitaria para consultar todos los registros de la tabla Compra.
+     *
+     * Se insertan datos de prueba con las instrucciones SQL en el archivo compra.sql.
+     */
+    @Test
+    @Sql("classpath:compra.sql")
+    public void listarValorTotalComprasUsuario(){
+        List<Object[]> lista = compraRepo.valorTotalComprasUsuario("124");
+        System.out.println("lista");
+    }
+
 }

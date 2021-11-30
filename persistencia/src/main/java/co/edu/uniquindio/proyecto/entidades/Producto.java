@@ -5,9 +5,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,15 +31,19 @@ public class Producto implements Serializable {
     @Column(nullable = false)
     private String codigo;
 
+    @NotBlank(message = "El nombre del producto es obligatorio")
     @Column(nullable = false)
     private String nombre;
 
+    @PositiveOrZero
     @Column(nullable = false)
     private Integer unidades;
 
+    @NotBlank(message = "La descripción del producto es obligatoria")
     @Column(nullable = false)
     private String descripcion;
 
+    @Positive
     @Column(nullable = false)
     private Double precio;
 
