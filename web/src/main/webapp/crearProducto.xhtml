@@ -31,6 +31,9 @@
                 <p:outputLabel value="Unidades: " for="unidades_p"/>
                 <p:inputText id="unidades_p" value="#{productoBean.producto.unidades}" required="true" type="number"/>
 
+                <p:outputLabel value="Imágenes" for="imagen_p" />
+                <p:fileUpload id="imagen_p" mode="advanced" multiple="true" sizeLimit="1000000" fileLimit="5" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" listener="#{productoBean.subirImagenes}" required="true" />
+
                 <p:outputLabel value="Descripción: " for="descripcion_p"/>
                 <p:textEditor id="descripcion_p" value="#{productoBean.producto.descripcion}" height="300" secure="false"/>
             </h:panelGrid>
