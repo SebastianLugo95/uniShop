@@ -37,7 +37,7 @@ public class ProductoServicioTest {
         try {
             Usuario vendedor = usuarioServicio.obtenerUsuario("123");
             Ciudad ciudad = ciudadRepo.findById("1").orElse(null);
-            Producto producto = new Producto("786", "Computador portatil ASUS X407S", 100, "Portatil para trabajos de hogar / offimatica xd", 1500000.0, LocalDate.now(), 30.5f, vendedor, ciudad);
+            Producto producto = new Producto(786, "Computador portatil ASUS X407S", 100, "Portatil para trabajos de hogar / offimatica xd", 1500000.0, LocalDate.now(), 30.5f, vendedor, ciudad);
             Producto publicado = productoServicio.publicarProducto(producto);
             Assertions.assertNotNull(publicado);
         }catch(Exception e){

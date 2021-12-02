@@ -62,7 +62,7 @@ public class ProductoTest {
     public void crearProducto() {
         Ciudad ciudad = ciudadRepo.findById("1").orElse(null);
         Usuario usuario = usuarioRepo.findById("1").orElse(null);
-        Producto producto = new Producto("786", "Computador portatil ASUS X407S", 100, "Portatil para trabajos de hogar / offimatica xd", 1500000.0, LocalDate.now(), 30.5f, usuario, ciudad);
+        Producto producto = new Producto(786, "Computador portatil ASUS X407S", 100, "Portatil para trabajos de hogar / offimatica xd", 1500000.0, LocalDate.now(), 30.5f, usuario, ciudad);
 
         Producto productoGuardado = productoRepo.save(producto);
         Assertions.assertNotNull(productoGuardado);

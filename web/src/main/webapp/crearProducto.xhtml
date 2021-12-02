@@ -23,13 +23,16 @@
                 <p:inputText id="precio_p" value="#{productoBean.producto.precio}" required="true"/>
 
                 <p:outputLabel value="Descuento: " for="descuento_p"/>
-                <p:inputText id="descuento_p" value="#{productoBean.producto.descuento}" required="true"/>
+                <p:inputText id="descuento_p" value="#{productoBean.producto.descuento}"/>
 
                 <p:outputLabel value="Fecha Limite: " for="fecha_p"/>
-                <p:inputText id="fecha_p" value="#{productoBean.producto.descuento}" required="true" type="date"/>
+                <p:datePicker id="fecha_p" value="#{productoBean.producto.fechaLimite}" required="true"/>
 
                 <p:outputLabel value="Unidades: " for="unidades_p"/>
                 <p:inputText id="unidades_p" value="#{productoBean.producto.unidades}" required="true" type="number"/>
+
+                <p:outputLabel value="Imagenes" for="imagen_p"/>
+                <p:fileUpload id="imagen_p" listener="#{productoBean.subirImagenes}" mode="advanced" multiple="true" sizeLimit="1000000" fileLimit="5" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true"/>
 
                 <p:outputLabel value="Descripción: " for="descripcion_p"/>
                 <p:textEditor id="descripcion_p" value="#{productoBean.producto.descripcion}" height="300" secure="false"/>

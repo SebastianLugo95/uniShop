@@ -1,9 +1,7 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
@@ -25,11 +23,14 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Producto implements Serializable {
 
     @Id
     @Column(nullable = false)
-    private String codigo;
+    @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codigo;
 
     @NotBlank(message = "El nombre del producto es obligatorio")
     @Column(nullable = false)
@@ -58,7 +59,7 @@ public class Producto implements Serializable {
     private Usuario codigoVendedor;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = true)
     private Ciudad codigoCiudad;
 
     @ManyToMany
@@ -101,7 +102,7 @@ public class Producto implements Serializable {
      * @param codigoVendedor Código del vendedor.
      * @param codigoCiudad Codigo de la ciudad.
      */
-    public Producto(String codigo, String nombre, Integer unidades, String descripcion, Double precio, LocalDate fechaLimite, Float descuento, Usuario codigoVendedor, Ciudad codigoCiudad) {
+    public Producto(Integer codigo, String nombre, Integer unidades, String descripcion, Double precio, LocalDate fechaLimite, Float descuento, Usuario codigoVendedor, Ciudad codigoCiudad) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.unidades = unidades;

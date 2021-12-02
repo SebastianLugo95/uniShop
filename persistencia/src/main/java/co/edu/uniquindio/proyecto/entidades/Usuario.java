@@ -28,7 +28,7 @@ public class Usuario extends Persona implements Serializable {
     private String username;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = true)
     private Ciudad codigoCiudad;
 
     @OneToMany(mappedBy = "codigoVendedor")
