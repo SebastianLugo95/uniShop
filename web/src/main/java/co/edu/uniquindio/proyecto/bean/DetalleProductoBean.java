@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.entidades.Comentario;
 import co.edu.uniquindio.proyecto.entidades.Producto;
+import co.edu.uniquindio.proyecto.servicios.ComentarioServicio;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
@@ -26,6 +27,9 @@ public class DetalleProductoBean {
     @Autowired
     private UsuarioServicio usuarioServicio;
 
+    @Autowired
+    private ComentarioServicio comentarioServicio;
+
     @Value("#{param['producto']}")
     private String codigoProducto;
 
@@ -49,7 +53,7 @@ public class DetalleProductoBean {
 
             Integer codigo = Integer.parseInt(codigoProducto);
             producto = productoServicio.obtenerProducto(codigo);
-            this.comentarios= producto.getComentarios();
+            this.comentarios= producto.getComentariosProducto();
         }
     }
 
@@ -57,9 +61,9 @@ public class DetalleProductoBean {
 
         try {
 
-            nuevoComentario.setProducto(producto);
-            nuevoComentario.setUsuario( usuarioServicio.obtenerUsuario(1));
-            productoServicio.comentarProducto(nuevoComentario);
+            nuevoComentario.setCodigoProducto(producto);
+            nuevoComentario.setCodigoUsuario( usuarioServicio.obtenerUsuario("1"));
+            comentarioServicio.comentarProducto(nuevoComentario);
             this.comentarios.add(nuevoComentario);
             this.nuevoComentario = new Comentario();
         }catch (Exception e){

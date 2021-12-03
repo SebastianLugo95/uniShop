@@ -27,10 +27,10 @@ import java.util.List;
  * Se encarga de leer y modificar la tabla Producto de la base de datos.
  */
 @Repository
-public interface ProductoRepo extends JpaRepository<Producto, String> {
+public interface ProductoRepo extends JpaRepository<Producto, Integer> {
 
     @Query("select c from Comentario c where c.codigoProducto.codigo =:codigo and c.respuesta is null ")
-    List<Comentario> listarComentariosSinRespuesta(String codigo);
+    List<Comentario> listarComentariosSinRespuesta(Integer codigo);
 
     Page<Producto> findAll(Pageable paginador);
 
@@ -38,7 +38,7 @@ public interface ProductoRepo extends JpaRepository<Producto, String> {
     String obtenerNombreVendedor(String id);
 
     @Query("select c from Producto p join p.comentariosProducto c where p.codigo = :codigo")
-    List<Comentario> obtenerComentarios(String codigo);
+    List<Comentario> obtenerComentarios(Integer codigo);
 
     @Query("select p, c from Producto p left join p.comentariosProducto c")
     List<Object[]> listarProductosYComentarios();
@@ -65,7 +65,7 @@ public interface ProductoRepo extends JpaRepository<Producto, String> {
     List<Producto> obtenerCategoriaMasUsada();
 
     @Query("select avg(c.calificacion) from Producto p join p.comentariosProducto c where p.codigo = :codigo")
-    Double obtenerPromedioCalificaciones(String codigo);
+    Double obtenerPromedioCalificaciones(Integer codigo);
 
 
 }

@@ -21,7 +21,7 @@
                 <p:dataView value="#{busquedaBean.productos}" paginator="true" rows="13" var="pro" gridIcon="pi pi-th-large" listIcon="pi pi-bars">
                     <p:dataViewGridItem>
                         <div class="card" >
-                            <img src="/uploads/#{pro.imagenPrincipal}" class="card-img-top"
+                            <img src="/uploads/#{pro.imagenesProducto[0]}" class="card-img-top"
                                  alt="..." />
                             <div class="card-body">
                                 <h5 class="card-title">#{pro.nombre}</h5>
@@ -34,7 +34,7 @@
                     <p:dataViewListItem>
                         <div class="row d-flex list-pro" >
                             <div class="col-lg-2 col-md-1" style="text-align: center" >
-                                <p:graphicImage url="/uploads/#{pro.imagenPrincipal}" styleClass="imagen-producto" />
+                                <p:graphicImage url="/uploads/#{pro.imagenesProducto[0]}" styleClass="imagen-producto" />
                             </div>
                             <div class="col-lg-8 col-md-1 align-self-center" >
                                 <p:outputPanel>

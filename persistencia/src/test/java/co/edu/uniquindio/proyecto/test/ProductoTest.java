@@ -76,10 +76,10 @@ public class ProductoTest {
     @Test
     @Sql("classpath:productos.sql")
     public void eliminarProducto(){
-        Producto producto = productoRepo.findById("2").orElse(null);
+        Producto producto = productoRepo.findById(2).orElse(null);
         productoRepo.delete(producto);
 
-        Producto productoEliminado = productoRepo.findById("2").orElse(null);
+        Producto productoEliminado = productoRepo.findById(2).orElse(null);
         Assertions.assertNull(productoEliminado);
 
     }
@@ -92,11 +92,11 @@ public class ProductoTest {
     @Test
     @Sql("classpath:productos.sql")
     public void actualizarProducto(){
-        Producto producto = productoRepo.findById("2").orElse(null);
+        Producto producto = productoRepo.findById(2).orElse(null);
         producto.setNombre("Nintendo Switch");
         productoRepo.save(producto);
 
-        Producto productoActualizado = productoRepo.findById("2").orElse(null);
+        Producto productoActualizado = productoRepo.findById(2).orElse(null);
         Assertions.assertEquals("Nintendo Switch", productoActualizado.getNombre());
     }
 
@@ -120,7 +120,7 @@ public class ProductoTest {
     @Test
     @Sql("classpath:productos.sql")
     public void listarComentariosSinRespuesta(){
-        List<Comentario> lista = productoRepo.listarComentariosSinRespuesta("2");
+        List<Comentario> lista = productoRepo.listarComentariosSinRespuesta(2);
         System.out.println(lista);
     }
 
