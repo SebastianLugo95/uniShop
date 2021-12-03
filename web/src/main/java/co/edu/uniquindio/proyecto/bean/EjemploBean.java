@@ -22,3 +22,21 @@ public class EjemploBean implements Serializable {
     }
 
 }
+
+
+//@Componente
+//@ViewScoped
+//@Adquiridor
+//@Setter
+ //clase  pública EjemploBean  implementa  Serializable
+
+
+   // Private  String atributo1, atributo2;
+
+     //vacío  público cambiar ()
+    
+       // String temp = atributo1;
+        //atributo1 = atributo2;
+        //atributo2 = temp;
+    
+
