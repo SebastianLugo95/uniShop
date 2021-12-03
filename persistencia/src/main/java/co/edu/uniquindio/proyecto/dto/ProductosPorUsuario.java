@@ -1,7 +1,7 @@
 package co.edu.uniquindio.proyecto.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.AllArgsConstructor;
 import lombok.ToString;
 
 @Getter
