@@ -57,7 +57,7 @@ public class DetalleCompraTest {
     @Test
     @Sql("classpath:detalleCompra.sql")
     public void crearDetalleCompra(){
-        Producto producto = productoRepo.findById("1").orElse(null);
+        Producto producto = productoRepo.findById(1).orElse(null);
         Compra compra = compraRepo.findById("1").orElse(null);
         DetalleCompra detalleCompra =new DetalleCompra("839", compra, producto, 50, 80000.0);
 

@@ -47,7 +47,7 @@ public class SubastaTest {
     @Test
     @Sql("classpath:subasta.sql")
     public void crearSubasta(){
-        Producto producto = productoRepo.findById("1").orElse(null);
+        Producto producto = productoRepo.findById(1).orElse(null);
         Subasta subasta = new Subasta("273", producto, LocalDate.now());
 
         Subasta subastaGuardada= subastaRepo.save(subasta);

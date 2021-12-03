@@ -1,9 +1,6 @@
 package co.edu.uniquindio.proyecto.servicios;
 
-import co.edu.uniquindio.proyecto.entidades.Categoria;
-import co.edu.uniquindio.proyecto.entidades.Compra;
-import co.edu.uniquindio.proyecto.entidades.Producto;
-import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.ProductoRepo;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +34,7 @@ public class ProductoServicioImpl implements  ProductoServicio{
     }
 
     @Override
-    public void eliminarProducto(String codigo) throws Exception {
+    public void eliminarProducto(Integer codigo) throws Exception {
         Optional<Producto> producto = productoRepo.findById(codigo);
 
         if(producto.isEmpty()){
@@ -48,7 +45,7 @@ public class ProductoServicioImpl implements  ProductoServicio{
     }
 
     @Override
-    public Producto obtenerProducto(String codigo) throws Exception {
+    public Producto obtenerProducto(Integer codigo) throws Exception {
         return productoRepo.findById(codigo).orElseThrow( () -> new Exception("El codigo del producto no es valido"));
     }
 

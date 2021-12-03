@@ -59,7 +59,7 @@ public class ChatTest {
     @Sql("classpath:chat.sql")
     public void crearChat(){
         Usuario usuario = usuarioRepo.findById("1").orElse(null);
-        Producto producto = productoRepo.findById("2").orElse(null);
+        Producto producto = productoRepo.findById(2).orElse(null);
         Chat chat = new Chat("834", usuario, producto);
 
         Chat chatGuardado = chatRepo.save(chat);
@@ -89,7 +89,7 @@ public class ChatTest {
     @Test
     @Sql("classpath:chat.sql")
     public void actualizarChat(){
-        Producto producto = productoRepo.findById("2").orElse(null);
+        Producto producto = productoRepo.findById(2).orElse(null);
         Chat chat = chatRepo.findById("564").orElse(null);
         chat.setCodigoProducto(producto);
         chatRepo.save(chat);
