@@ -58,7 +58,7 @@ public class DetalleProductoBean {
         try {
 
             nuevoComentario.setProducto(producto);
-            nuevoComentario.setUsuario( usuarioServicio.obtenerUsuario(1));
+            nuevoComentario.setUsuario( usuarioServicio.obtenerUsuario(12));
             productoServicio.comentarProducto(nuevoComentario);
             this.comentarios.add(nuevoComentario);
             this.nuevoComentario = new Comentario();
