@@ -24,6 +24,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +70,7 @@ public class ProductoBean implements Serializable {
                 Usuario usuario = usuarioServicio.obtenerUsuario("123");
                 producto.setCodigoVendedor(usuario);
                 producto.setImagenesProducto(imagenes);
+                producto.setFechaLimite(LocalDate.now().plusMonths(2));
                 productoServicio.publicarProducto(producto);
 
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Producto Creado Exitosamente");
