@@ -18,11 +18,11 @@ import java.util.List;
  * @author Stiven Herrera Sierra.
  */
 @Repository
-public interface CategoriaRepo extends JpaRepository<Categoria, String> {
+public interface CategoriaRepo extends JpaRepository<Categoria, Integer> {
 
     @Query("select c.nombre, avg(cm.calificacion) as promedio from Categoria c join Producto p join Comentario cm group by c order by promedio")
     List<Object[]> listarCategoriasPorCalificacion();
 
     @Query ("select c.codigo, max(dc.codigoProducto) as maxVendido from  Compra c join c.detallesCompra dc join dc.codigoProducto.categoriasProducto ca where ca.codigo =:codigo")
-    List<Object[]> productoMasVendidoPorCategoria(String codigo);
+    List<Object[]> productoMasVendidoPorCategoria(Integer codigo);
 }

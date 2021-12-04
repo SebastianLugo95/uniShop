@@ -36,7 +36,7 @@ public class CategoriaTest {
      */
     @Test
     public void crearCategoria(){
-        Categoria categoria = new Categoria("834", "Aseo");
+        Categoria categoria = new Categoria(834, "Aseo");
 
         Categoria categoriaGuardada = categoriaRepo.save(categoria);
         Assertions.assertNotNull(categoriaGuardada);
@@ -50,10 +50,10 @@ public class CategoriaTest {
     @Test
     @Sql("classpath:categoria.sql")
     public void eliminarCategoria(){
-        Categoria categoria = categoriaRepo.findById("1").orElse(null);
+        Categoria categoria = categoriaRepo.findById(1).orElse(null);
         categoriaRepo.delete(categoria);
 
-        Categoria categoriaEliminada = categoriaRepo.findById("1").orElse(null);
+        Categoria categoriaEliminada = categoriaRepo.findById(1).orElse(null);
         Assertions.assertNull(categoriaEliminada);
     }
 
@@ -65,11 +65,11 @@ public class CategoriaTest {
     @Test
     @Sql("classpath:categoria.sql")
     public void actualizarCategoria(){
-        Categoria categoria = categoriaRepo.findById("1").orElse(null);
+        Categoria categoria = categoriaRepo.findById(1).orElse(null);
         categoria.setNombre("Mascotas");
         categoriaRepo.save(categoria);
 
-        Categoria categoriaActualizada = categoriaRepo.findById("1").orElse(null);
+        Categoria categoriaActualizada = categoriaRepo.findById(1).orElse(null);
         Assertions.assertEquals("Mascotas", categoriaActualizada.getNombre());
     }
 
@@ -106,7 +106,7 @@ public class CategoriaTest {
     @Test
     @Sql("classpath:comentario.sql")
     public void listarProductoMasVendidoPorCategoria(){
-        List<Object[]> lista = categoriaRepo.productoMasVendidoPorCategoria("1");
+        List<Object[]> lista = categoriaRepo.productoMasVendidoPorCategoria(1);
         lista.forEach(r -> System.out.println(r[0] + " ------> " + r[1]));
     }
 

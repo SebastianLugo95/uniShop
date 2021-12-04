@@ -19,6 +19,6 @@ public class CiudadServicioImpl implements CiudadServicio {
 
     @Override
     public Ciudad obtenerCiudad(Integer id) throws Exception {
-        return ciudadRepo.findById(id).orElseThrow(() -> new Exception("El id no corresponde a nunguna ciudad"));
+        return ciudadRepo.findById(id).orElseThrow(() -> new Exception("El id no corresponde a ninguna ciudad"));
     }
 }

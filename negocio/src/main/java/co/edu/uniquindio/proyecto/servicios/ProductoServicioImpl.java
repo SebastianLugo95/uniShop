@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.servicios;
 
 import co.edu.uniquindio.proyecto.entidades.*;
+import co.edu.uniquindio.proyecto.repositorios.CategoriaRepo;
 import co.edu.uniquindio.proyecto.repositorios.ProductoRepo;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,11 @@ public class ProductoServicioImpl implements  ProductoServicio{
 
 
     private final ProductoRepo productoRepo;
+    private final CategoriaRepo categoriaRepo;
 
-    public ProductoServicioImpl(ProductoRepo productoRepo) {
+    public ProductoServicioImpl(ProductoRepo productoRepo, CategoriaRepo categoriaRepo) {
         this.productoRepo = productoRepo;
+        this.categoriaRepo = categoriaRepo;
     }
 
     @Override
@@ -82,5 +85,15 @@ public class ProductoServicioImpl implements  ProductoServicio{
     @Override
     public List<Producto> listarProductos(String codigoUsuario) throws Exception {
         return null;
+    }
+
+    @Override
+    public List<Categoria> listarCategorias() {
+        return categoriaRepo.findAll();
+    }
+
+    @Override
+    public Categoria obtenerCategoria(Integer id) throws Exception {
+        return categoriaRepo.findById(id).orElseThrow(() -> new Exception("El id no corresponde a ninguna categoría"));
     }
 }

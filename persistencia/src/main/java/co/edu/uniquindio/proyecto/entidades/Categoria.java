@@ -1,9 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,11 +19,14 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Categoria implements Serializable {
 
     @Id
-    @Column(nullable = false, length = 10)
-    private String codigo;
+    @EqualsAndHashCode.Include
+    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codigo;
 
     @Column(nullable = false)
     private String nombre;
@@ -39,7 +39,7 @@ public class Categoria implements Serializable {
      * @param codigo Código de la categoría.
      * @param nombre Nombre de la categoría.
      */
-    public Categoria(String codigo, String nombre) {
+    public Categoria(Integer codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
     }

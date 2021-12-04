@@ -1,7 +1,10 @@
 package co.edu.uniquindio.proyecto.bean;
 
+import co.edu.uniquindio.proyecto.entidades.Categoria;
+import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.servicios.CiudadServicio;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
@@ -21,18 +24,23 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @ViewScoped
 public class ProductoBean implements Serializable {
 
-    @Getter
-    @Setter
+    @Getter @Setter
     private Producto producto;
 
     private ArrayList<String> imagenes;
+
+    @Getter @Setter
+    private List<Categoria> categorias;
+
+    @Getter @Setter
+    private List<Ciudad> ciudades;
 
     @Value("${upload.url}")
     private String urlUploads;
@@ -43,10 +51,15 @@ public class ProductoBean implements Serializable {
     @Autowired
     private UsuarioServicio usuarioServicio;
 
+    @Autowired
+    private CiudadServicio ciudadServicio;
+
     @PostConstruct
     public void inicializar(){
         this.producto = new Producto();
         this.imagenes = new ArrayList<>();
+        this.categorias = productoServicio.listarCategorias();
+        this.ciudades = ciudadServicio.listarCiudades();
     }
 
     public void crearProducto(){
