@@ -61,9 +61,15 @@ public class DetalleProductoBean {
 
         try {
 
+<<<<<<< HEAD
+            nuevoComentario.setProducto(producto);
+            nuevoComentario.setUsuario( usuarioServicio.obtenerUsuario(12));
+            productoServicio.comentarProducto(nuevoComentario);
+=======
             nuevoComentario.setCodigoProducto(producto);
             nuevoComentario.setCodigoUsuario( usuarioServicio.obtenerUsuario("1"));
             comentarioServicio.comentarProducto(nuevoComentario);
+>>>>>>> 795f2b4bec5ec86e3766c75a708a7726d9f7f534
             this.comentarios.add(nuevoComentario);
             this.nuevoComentario = new Comentario();
         }catch (Exception e){
