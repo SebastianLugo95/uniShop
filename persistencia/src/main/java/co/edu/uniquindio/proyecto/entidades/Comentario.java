@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -36,6 +38,7 @@ public class Comentario implements Serializable {
     @JoinColumn(nullable = false)
     private Usuario codigoUsuario;
 
+    @NotBlank
     @Column(nullable = false)
     private String mensaje;
 
@@ -45,6 +48,7 @@ public class Comentario implements Serializable {
     @Column(nullable = false)
     private LocalDate fechaComentario;
 
+    @PositiveOrZero
     @Column(nullable = false)
     private Integer calificacion;
 

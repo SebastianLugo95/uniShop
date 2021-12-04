@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -31,14 +32,17 @@ public class Persona implements Serializable {
     @EqualsAndHashCode.Include
     private String codigo;
 
+    @NotBlank
     @Column(nullable = false, length = 100)
     @Length(max = 150)
     private String nombre;
 
+    @NotBlank
     @Column(nullable = false)
     @Email
     private String email;
 
+    @NotBlank
     @Column(nullable = false)
     private String password;
 
