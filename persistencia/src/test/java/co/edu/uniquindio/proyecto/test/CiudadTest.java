@@ -35,7 +35,7 @@ public class CiudadTest {
      */
     @Test
     public void crearCiudad(){
-        Ciudad ciudad = new Ciudad("9", "Manizales");
+        Ciudad ciudad = new Ciudad(9, "Manizales");
 
         Ciudad ciudadGuardada = ciudadRepo.save(ciudad);
         Assertions.assertNotNull(ciudadGuardada);

@@ -23,7 +23,8 @@ public class Ciudad implements Serializable {
 
     @Id
     @Column(nullable = false)
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codigo;
 
     @Column(nullable = false, length = 80)
     private String nombre;
@@ -41,7 +42,7 @@ public class Ciudad implements Serializable {
      * @param codigo Código de la ciudad.
      * @param nombre Nombre de la ciudad.
      */
-    public Ciudad(String codigo, String nombre) {
+    public Ciudad(Integer codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
     }
