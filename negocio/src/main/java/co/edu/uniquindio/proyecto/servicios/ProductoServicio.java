@@ -28,6 +28,8 @@ public interface ProductoServicio {
 
     List<Producto> listarProductos(String codigoUsuario) throws Exception;
 
+    List<Producto> listarTodosProductos();
+
     List<Categoria> listarCategorias();
 
     Categoria obtenerCategoria(Integer id) throws Exception;

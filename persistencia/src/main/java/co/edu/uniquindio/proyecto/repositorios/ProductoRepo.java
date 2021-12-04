@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.repositorios;
 
 import co.edu.uniquindio.proyecto.dto.ProductoValido;
 import co.edu.uniquindio.proyecto.dto.ProductosPorUsuario;
+import co.edu.uniquindio.proyecto.entidades.Categoria;
 import co.edu.uniquindio.proyecto.entidades.Comentario;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
@@ -67,5 +68,6 @@ public interface ProductoRepo extends JpaRepository<Producto, Integer> {
     @Query("select avg(c.calificacion) from Producto p join p.comentariosProducto c where p.codigo = :codigo")
     Double obtenerPromedioCalificaciones(Integer codigo);
 
-
+    @Query("select p from Producto p where :categoria member of p.categoriasProducto")
+    List<Producto> listarPorCategoria(Categoria categoria);
 }
