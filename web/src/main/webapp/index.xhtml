@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Pagina bienvenida</title>
     <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    <h:outputStylesheet library="css" name="styles.css"/>
     <h:outputScript library="js" name="bootstrap.bundle.min.js"/>
 </h:head>
 <h:body>
@@ -19,12 +20,15 @@
         <nav class="py-2 bg-light border-bottom">
             <div class="container d-flex flex-wrap">
                 <ul class="nav me-auto">
-                    <li class="nav-item"><a href="index.xhtml" class="nav-link link-dark px-2 active" aria-current="page">Inicio</a></li>
-                    <li class="nav-item"><a href="crearProducto.xhtml" class="nav-link link-dark px-2">Crear Producto</a></li>
+                    <li class="nav-item"><a href="index.xhtml" class="nav-link link-dark px-2 active"
+                                            aria-current="page">Inicio</a></li>
+                    <li class="nav-item"><a href="crearProducto.xhtml"
+                                            class="nav-link link-dark px-2">Crear Producto</a></li>
                 </ul>
                 <ul class="nav">
                     <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Login</a></li>
-                    <li class="nav-item"><a href="registrarUsuario.xhtml" class="nav-link link-dark px-2">Registrarse</a></li>
+                    <li class="nav-item"><a href="registrarUsuario.xhtml"
+                                            class="nav-link link-dark px-2">Registrarse</a></li>
                 </ul>
             </div>
         </nav>
@@ -36,7 +40,8 @@
                 </a>
                 <h:form>
                     <div class="col-12 col-lg-auto mb-3 mb-lg-0 class=input-search ui-inputgroup">
-                        <p:inputText style="width: 300px" placeholder="Qué producto esta buscando?" required="true" value="#{busquedaBean.busqueda}"/>
+                        <p:inputText style="width: 300px" placeholder="Qué producto esta buscando?" required="true"
+                                     value="#{busquedaBean.busqueda}"/>
                         <p:commandButton icon="pi pi-search" action="#{busquedaBean.buscar}" update="@form"/>
                     </div>
                 </h:form>
@@ -46,7 +51,51 @@
     </div>
 
     <div id="content">
+        <div class="container">
+            <h1>Lista productos</h1>
+            <h:form>
+                <p:dataView value="#{inicioBean.productos}" var="producto" gridIcon="pi pi-th-large"
+                            listIcon="pi pi-bars" paginator="true" rows="3">
+                    <p:dataViewGridItem>
+                        <div class="card">
+                            <img src="/uploads/#{producto.imagenPrincipal}" class="card-img-top" alt="..."/>
+                            <div class="card-body">
+                                <h5 class="card-title">#{producto.nombre}</h5>
+                                <p class="card-text">$ #{producto.precio}</p>
+                                <hr/>
+                                <p:commandButton value="Ver detalle" styleClass="ui-button-raised" icon="pi pi-arrow-right" iconPos="right" action="#{inicioBean.irADetalle(producto.codigo)}"/>
+                            </div>
+                        </div>
+                    </p:dataViewGridItem>
 
+                    <p:dataViewListItem>
+                        <div class="row d-flex item-pro" >
+                        <div class="col-lg-2 col-md-1" style="text-align: center" >
+                            <p:graphicImage url="/uploads/#{producto.imagenPrincipal}" styleClass="imagen-producto" />
+                        </div>
+                        <div class="col-lg-8 col-md-1 align-self-center" >
+                        <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputText value="Nombre:" />
+                            <h:outputText value="#{producto.nombre}" style="font-weight: bold" />
+                            <h:outputText value="Precio:" />
+                            <h:outputText value="$ #{producto.precio}" />
+                            <h:outputText value="Categorías:" />
+                            <ui:repeat value="#{producto.categoriasProducto}" var="categoria">
+                                <p:chip label="#{categoria.nombre}" styleClass="p-mr-2 chips"/>
+                            </ui:repeat>
+
+                        </h:panelGrid>
+                        </p:outputPanel>
+                        </div>
+                            <div class="col-lg-2 col-md-1 align-self-center" >
+                                <p:commandButton value="Ver detalle" styleClass="ui-button-raised" icon="pi pi-arrow-right" iconPos="right" action="#{inicioBean.irADetalle(producto.codigo)}" />
+                            </div>
+                        </div>
+                    </p:dataViewListItem>
+                </p:dataView>
+            </h:form>
+        </div>
     </div>
 </h:body>
 </html>

@@ -113,4 +113,12 @@ public class Producto implements Serializable {
         this.codigoVendedor = codigoVendedor;
         this.codigoCiudad = codigoCiudad;
     }
+
+    public String getImagenPrincipal() {
+        if(imagenesProducto != null && !imagenesProducto.isEmpty()) {
+            return imagenesProducto.get(0);
+        }
+
+        return "default.png";
+    }
 }

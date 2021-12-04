@@ -13,13 +13,14 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Component
 @ViewScoped
-public class DetalleProductoBean {
+public class DetalleProductoBean implements Serializable {
 
     @Autowired
     private ProductoServicio productoServicio;
