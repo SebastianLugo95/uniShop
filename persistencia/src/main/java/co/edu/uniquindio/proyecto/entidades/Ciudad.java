@@ -19,9 +19,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Ciudad implements Serializable {
 
     @Id
+    @EqualsAndHashCode.Include
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;

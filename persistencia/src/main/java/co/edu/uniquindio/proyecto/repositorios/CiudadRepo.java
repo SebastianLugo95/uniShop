@@ -19,7 +19,7 @@ import java.util.Optional;
  * @author Stiven Herrera Sierra.
  */
 @Repository
-public interface CiudadRepo extends JpaRepository<Ciudad, String> {
+public interface CiudadRepo extends JpaRepository<Ciudad, Integer> {
 
     Optional<Ciudad> findByNombre(String nombreCiudad);
 

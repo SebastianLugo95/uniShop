@@ -24,7 +24,7 @@ public class UsuarioServicioTest {
 
     @Test
     public void registrarTest(){
-        Ciudad ciudad = ciudadRepo.findById("1").orElse(null);
+        Ciudad ciudad = ciudadRepo.findById(1).orElse(null);
         Usuario usuario = new Usuario("754", "Julian", "julian@gmail.com", "8956", "Julian",  ciudad);
         try {
             Usuario respuesta = usuarioServicio.registrarUsuario(usuario);

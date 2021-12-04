@@ -54,7 +54,7 @@ public class UsuarioTest {
     @Test
     @Sql("classpath:usuarios.sql")
     public void registrarTest(){
-        Ciudad ciudad = ciudadRepo.findById("1").orElse(null);
+        Ciudad ciudad = ciudadRepo.findById(1).orElse(null);
         Usuario usuario = new Usuario("754", "Julian", "julian@gmail.com", "8956", "Julian",  ciudad);
 
         Usuario usuarioGuardado = usuarioRepo.save(usuario);

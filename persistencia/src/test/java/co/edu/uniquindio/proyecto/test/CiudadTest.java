@@ -49,10 +49,10 @@ public class CiudadTest {
     @Test
     @Sql("classpath:ciudad.sql")
     public void eliminarCiudad(){
-        Ciudad ciudad = ciudadRepo.findById("1").orElse(null);
+        Ciudad ciudad = ciudadRepo.findById(1).orElse(null);
         ciudadRepo.delete(ciudad);
 
-        Ciudad ciudadEliminada = ciudadRepo.findById("1").orElse(null);
+        Ciudad ciudadEliminada = ciudadRepo.findById(1).orElse(null);
         Assertions.assertNull(ciudadEliminada);
 
     }
@@ -65,11 +65,11 @@ public class CiudadTest {
     @Test
     @Sql("classpath:ciudad.sql")
     public void actualizarCiudad(){
-        Ciudad ciudad = ciudadRepo.findById("1").orElse(null);
+        Ciudad ciudad = ciudadRepo.findById(1).orElse(null);
         ciudad.setNombre("Valledupar");
         ciudadRepo.save(ciudad);
 
-        Ciudad ciudadActualizada = ciudadRepo.findById("1").orElse(null);
+        Ciudad ciudadActualizada = ciudadRepo.findById(1).orElse(null);
         Assertions.assertEquals("Valledupar", ciudadActualizada.getNombre());
     }
 
