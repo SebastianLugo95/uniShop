@@ -9,7 +9,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Entidad Comentario.
@@ -51,6 +53,11 @@ public class Comentario implements Serializable {
     @PositiveOrZero
     @Column(nullable = false)
     private Integer calificacion;
+
+    public String getFechaEstilo(){
+        return  fechaComentario.format(DateTimeFormatter.ISO_DATE);
+    }
+
 
     /**
      * Constructor con los datos obligatorios

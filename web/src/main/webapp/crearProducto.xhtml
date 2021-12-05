@@ -7,12 +7,9 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Crear nuevo producto</title>
-</h:head>
-<h:body>
+<ui:composition template="WEB-INF/template.xhtml">
+    <ui:define name="title">Crear Producto</ui:define>
+    <ui:define name="content">
     <p:panel header="Crear Producto">
         <h:form>
             <h:panelGrid columns="3" cellpadding="5">
@@ -28,13 +25,10 @@
                 <p:inputText id="descuento_p" value="#{productoBean.producto.descuento}"/>
                 <p:message for="descuento_p"/>
 
-<<<<<<< HEAD
                 <p:outputLabel value="Fecha Limite: " for="fecha_p"/>
                 <p:datePicker id="fecha_p" value="#{productoBean.producto.fechaLimite}" required="true"/>
                 <p:message for="fecha_p"/>
 
-=======
->>>>>>> e6d033f0b09646920698f98742e29008118099d7
                 <p:outputLabel value="Unidades: " for="unidades_p"/>
                 <p:inputText id="unidades_p" value="#{productoBean.producto.unidades}" required="true" type="number"/>
                 <p:message for="unidades_p"/>
@@ -65,5 +59,6 @@
             <p:commandButton value="Crear Producto" action="#{productoBean.crearProducto}" update="@form" icon="pi pi-plus"/>
         </h:form>
     </p:panel>
-</h:body>
+</ui:define>
+</ui:composition>
 </html>
