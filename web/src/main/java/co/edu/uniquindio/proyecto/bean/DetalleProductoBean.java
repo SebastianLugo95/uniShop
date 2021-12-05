@@ -71,4 +71,8 @@ public class DetalleProductoBean implements Serializable {
         }
 
     }
+
+    public Double calificacionPromedio() {
+        return 0.0;
+    }
 }
