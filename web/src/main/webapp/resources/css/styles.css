@@ -174,3 +174,12 @@
         width: 100%;
     }
 }
+
+body .ui-menu.ui-menubar {
+    padding: 0;
+    border-width: 0;
+}
+
+body .ui-menu {
+    padding: 0.75rem 0;
+}

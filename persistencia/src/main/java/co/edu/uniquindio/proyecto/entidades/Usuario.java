@@ -21,7 +21,7 @@ import java.util.List;
 @ToString(callSuper = true)
 public class Usuario extends Persona implements Serializable {
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> telefonos;
 
     @Column(nullable = false, unique = true)
