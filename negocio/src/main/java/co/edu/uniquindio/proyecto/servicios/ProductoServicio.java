@@ -33,4 +33,6 @@ public interface ProductoServicio {
     List<Categoria> listarCategorias();
 
     Categoria obtenerCategoria(Integer id) throws Exception;
+
+    Integer calcularPromedioCalificacion(Integer codigo) throws Exception;
 }

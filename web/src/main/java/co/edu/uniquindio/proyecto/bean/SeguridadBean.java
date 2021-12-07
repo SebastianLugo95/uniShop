@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 
@@ -35,7 +36,9 @@ public class SeguridadBean implements Serializable {
                 autenticado = true;
                 return "index?faces-redirect=true";
             }catch (Exception e){
-                    e.printStackTrace();
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
+                FacesContext.getCurrentInstance().addMessage("login-bean", fm);
+                e.printStackTrace();
             }
         }
         return null;

@@ -11,8 +11,6 @@ import java.util.Optional;
 
 @Service
 public class ProductoServicioImpl implements  ProductoServicio{
-
-
     private final ProductoRepo productoRepo;
     private final CategoriaRepo categoriaRepo;
 
@@ -100,5 +98,14 @@ public class ProductoServicioImpl implements  ProductoServicio{
     @Override
     public Categoria obtenerCategoria(Integer id) throws Exception {
         return categoriaRepo.findById(id).orElseThrow(() -> new Exception("El id no corresponde a ninguna categoría"));
+    }
+
+    @Override
+    public Integer calcularPromedioCalificacion(Integer codigo) throws Exception {
+        Optional<Producto> productoBuscado = productoRepo.findById(codigo);
+
+        if(productoBuscado.isEmpty()) throw new Exception("El codigo del producto no existe");
+
+        return productoRepo.calcularPromedioCalificacion(codigo);
     }
 }

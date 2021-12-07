@@ -30,7 +30,8 @@ public class Comentario implements Serializable {
 
     @Id
     @Column(nullable = false)
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codigo;
 
     @ManyToOne
     @JoinColumn(nullable = false)
@@ -61,7 +62,6 @@ public class Comentario implements Serializable {
 
     /**
      * Constructor con los datos obligatorios
-     * @param codigo
      * @param codigoProducto
      * @param codigoUsuario
      * @param mensaje
@@ -69,8 +69,7 @@ public class Comentario implements Serializable {
      * @param fechaComentario
      * @param calificacion
      */
-    public Comentario(String codigo, Producto codigoProducto, Usuario codigoUsuario, String mensaje, String respuesta, LocalDate fechaComentario, Integer calificacion) {
-        this.codigo = codigo;
+    public Comentario(Producto codigoProducto, Usuario codigoUsuario, String mensaje, String respuesta, LocalDate fechaComentario, Integer calificacion) {
         this.codigoProducto = codigoProducto;
         this.codigoUsuario = codigoUsuario;
         this.mensaje = mensaje;
