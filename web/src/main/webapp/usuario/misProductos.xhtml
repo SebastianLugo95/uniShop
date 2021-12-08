@@ -14,23 +14,15 @@
 
         <h1>Mis productos</h1>
         <h:form>
-            <p:dataView value="#{misProductosBean.misProductos}" var="producto" gridIcon="pi pi-th-large"
-                        listIcon="pi pi-bars">
-                <p:dataViewGridItem>
-                    <div class="card">
-                        <img src="../uploads/#{producto.imagenPrincipal}" class="card-img-top" alt="..."/>
-                        <div class="card-body">
-                            <h5 class="card-title">#{producto.nombre}</h5>
-                            <p class="card-text">$ #{producto.precio}</p>
-                            <hr/>
-                            <p:commandButton value="Ver detalle" styleClass="ui-button-raised" icon="pi pi-arrow-right" iconPos="right" action="#{inicioBean.irADetalle(producto.codigo)}"/>
-                        </div>
-                    </div>
-                </p:dataViewGridItem>
+            <p:dataView value="#{misProductosBean.misProductos}" var="producto" listIcon="pi pi-bars">
 
                 <p:dataViewListItem>
-                    <div class="row d-flex item-pro" >
-                        <div class="col-lg-2 col-md-1" style="text-align: center" >
+                    <div class="row d-flex item-pro">
+                        <div style="display: flex; justify-content: end;">
+                            <p:commandButton styleClass="rounded-button ui-button-secondary" icon="pi pi-trash" action="#{misProductosBean.eliminarProducto(producto)}" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-1" style="text-align: center;  height: 150px; display: flex; align-items: center; justify-content: center;" >
                             <p:graphicImage url="/uploads/#{producto.imagenPrincipal}" styleClass="imagen-producto" />
                         </div>
                         <div class="col-lg-8 col-md-1 align-self-center" >
@@ -48,9 +40,13 @@
                                 </h:panelGrid>
                             </p:outputPanel>
                         </div>
-                        <div class="col-lg-2 col-md-1 align-self-center" >
-                            <p:commandButton value="Ver detalle" styleClass="ui-button-raised" icon="pi pi-arrow-right" iconPos="right" action="#{misProductosBean.irADetalle(producto.codigo)}" />
+
+
+                        <div class="col-lg-2 col-md-1 align-self-center" style="display: flex; flex-direction: row; justify-content: space-between; box-sizing: border-box;">
+                                <p:commandButton value="Editar" styleClass="ui-button-raised" />
+                                <p:commandButton value="Ver detalle" styleClass="ui-button-raised" action="#{misProductosBean.irADetalle(producto.codigo)}" />
                         </div>
+
                     </div>
                 </p:dataViewListItem>
             </p:dataView>

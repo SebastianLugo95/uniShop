@@ -40,4 +40,14 @@ public class MisProductosBean implements Serializable {
     public String irADetalle(Integer id) {
         return "/detalle_producto?faces-redirect=true&amp;producto="+id;
     }
+
+    public void eliminarProducto(Producto p) {
+        if(p != null) {
+            try {
+                productosServicio.eliminarProducto(p.getCodigo());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
