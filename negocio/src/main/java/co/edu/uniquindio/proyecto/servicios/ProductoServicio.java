@@ -10,13 +10,15 @@ public interface ProductoServicio {
 
     Producto publicarProducto(Producto producto) throws Exception;
 
-    void actualizarProducto(Producto producto) throws Exception;
+    Producto actualizarProducto(Producto producto) throws Exception;
 
     void eliminarProducto(Integer codigo) throws Exception;
 
     Producto obtenerProducto(Integer codigo) throws Exception;
 
-    List<Producto> listarProductos(Categoria categoria);
+    List<Producto> listarProductosCategoria(Categoria categoria);
+
+    List<Producto> listarProductosCiudad(Ciudad ciudad);
 
     void comentarProducto(String mensaje, Double calificacion, Usuario usuario, Producto producto) throws Exception;
 
@@ -35,6 +37,8 @@ public interface ProductoServicio {
     List<Categoria> listarCategorias();
 
     Categoria obtenerCategoria(Integer id) throws Exception;
+
+    Ciudad obtenerCiudad(Integer id) throws Exception;
 
     Integer calcularPromedioCalificacion(Integer codigo) throws Exception;
 

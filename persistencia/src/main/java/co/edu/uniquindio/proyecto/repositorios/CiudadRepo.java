@@ -26,4 +26,5 @@ public interface CiudadRepo extends JpaRepository<Ciudad, Integer> {
     @Query("select u from Ciudad c join c.usuariosCiudad u where c.nombre = :nombre")
     List<Usuario> listarUsuarios(String nombre);
 
+
 }

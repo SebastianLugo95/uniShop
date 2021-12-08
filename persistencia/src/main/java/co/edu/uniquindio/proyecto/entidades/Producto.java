@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -64,6 +65,7 @@ public class Producto implements Serializable {
 
     @ManyToMany
     @ToString.Exclude
+    @JsonIgnore
     private List<Categoria> categoriasProducto;
 
     @ElementCollection
@@ -72,22 +74,27 @@ public class Producto implements Serializable {
 
     @OneToMany(mappedBy = "codigoProducto")
     @ToString.Exclude
+    @JsonIgnore
     private List<DetalleCompra> detallesCompra;
 
     @ManyToMany(mappedBy = "productosFavoritos") //Para añadir a favoritos, el producto debe existir => Favorito depende de Producto.
     @ToString.Exclude
+    @JsonIgnore
     private List<Usuario> favoritoUsuarios;
 
     @OneToMany(mappedBy = "codigoProducto")
     @ToString.Exclude
+    @JsonIgnore
     private List<Comentario> comentariosProducto;
 
     @OneToMany(mappedBy = "codigoProducto")
     @ToString.Exclude
+    @JsonIgnore
     private List<Subasta> subastasProducto;
 
     @OneToMany(mappedBy = "codigoProducto")
     @ToString.Exclude
+    @JsonIgnore
     private List<Chat> chatsProducto;
 
     /**
@@ -118,7 +125,6 @@ public class Producto implements Serializable {
         if(imagenesProducto != null && !imagenesProducto.isEmpty()) {
             return imagenesProducto.get(0);
         }
-
         return "default.png";
     }
 }

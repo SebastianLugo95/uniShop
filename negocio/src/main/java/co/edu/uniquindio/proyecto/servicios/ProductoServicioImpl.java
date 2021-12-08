@@ -18,15 +18,17 @@ public class ProductoServicioImpl implements  ProductoServicio{
     private final ProductoRepo productoRepo;
     private final CategoriaRepo categoriaRepo;
     private final CompraRepo compraRepo;
+    private final CiudadRepo ciudadRepo;
     private final DetalleCompraRepo detalleCompraRepo;
     private final UsuarioRepo usuarioRepo;
 
-    public ProductoServicioImpl(ProductoRepo productoRepo, CategoriaRepo categoriaRepo, CompraRepo compraRepo, DetalleCompraRepo detalleCompraRepo, UsuarioRepo usuarioRepo) {
+    public ProductoServicioImpl(ProductoRepo productoRepo, CategoriaRepo categoriaRepo, CompraRepo compraRepo, DetalleCompraRepo detalleCompraRepo, UsuarioRepo usuarioRepo, CiudadRepo ciudadRepo) {
         this.productoRepo = productoRepo;
         this.categoriaRepo = categoriaRepo;
         this.compraRepo = compraRepo;
         this.detalleCompraRepo = detalleCompraRepo;
         this.usuarioRepo = usuarioRepo;
+        this.ciudadRepo = ciudadRepo;
     }
 
     @Override
@@ -40,8 +42,12 @@ public class ProductoServicioImpl implements  ProductoServicio{
     }
 
     @Override
-    public void actualizarProducto(Producto producto) throws Exception {
-
+    public Producto actualizarProducto(Producto producto) throws Exception {
+        Optional<Producto> buscado = productoRepo.findById(producto.getCodigo());
+        if(buscado.isEmpty()){
+            throw  new Exception(("El producto no existe"));
+        }
+        return productoRepo.save(producto);
     }
 
     @Override
@@ -52,7 +58,6 @@ public class ProductoServicioImpl implements  ProductoServicio{
             throw new Exception("El codigo del producto no existe");
         }
 
-
         productoRepo.deleteById(codigo);
     }
 
@@ -62,8 +67,13 @@ public class ProductoServicioImpl implements  ProductoServicio{
     }
 
     @Override
-    public List<Producto> listarProductos(Categoria categoria) {
+    public List<Producto> listarProductosCategoria(Categoria categoria) {
         return productoRepo.listarPorCategoria(categoria);
+    }
+
+    @Override
+    public List<Producto> listarProductosCiudad(Ciudad ciudad) {
+        return productoRepo.listarPorCiudad(ciudad);
     }
 
     @Override
@@ -113,6 +123,11 @@ public class ProductoServicioImpl implements  ProductoServicio{
     @Override
     public Categoria obtenerCategoria(Integer id) throws Exception {
         return categoriaRepo.findById(id).orElseThrow(() -> new Exception("El id no corresponde a ninguna categoría"));
+    }
+
+    @Override
+    public Ciudad obtenerCiudad(Integer id) throws Exception {
+        return ciudadRepo.findById(id).orElseThrow(() -> new Exception("El id no corresponde a ninguna ciudad"));
     }
 
     @Override

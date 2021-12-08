@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -33,27 +34,33 @@ public class Usuario extends Persona implements Serializable {
 
     @OneToMany(mappedBy = "codigoVendedor")
     @ToString.Exclude
+    @JsonIgnore
     private List<Producto> productosVenta;
 
     @OneToMany(mappedBy = "codigoUsuario")
     @ToString.Exclude
+    @JsonIgnore
     private List<Comentario> comentarios;
 
     @OneToMany(mappedBy = "codigoUsuario")
     @ToString.Exclude
+    @JsonIgnore
     private List<Compra> compras;
 
     @OneToMany(mappedBy = "codigoUsuario")
     @ToString.Exclude
+    @JsonIgnore
     private List<SubastaUsuario> subastasUsuario;
 
     @OneToMany(mappedBy = "usuarioComprador")
     @ToString.Exclude
+    @JsonIgnore
     private List<Chat> chats;
 
     //@OneToMany(mappedBy = "usuario")
     @ManyToMany
     @ToString.Exclude
+    @JsonIgnore
     private List<Producto> productosFavoritos;
 
     /**

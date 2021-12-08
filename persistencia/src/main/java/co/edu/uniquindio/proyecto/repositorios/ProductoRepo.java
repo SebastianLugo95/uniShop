@@ -2,10 +2,7 @@ package co.edu.uniquindio.proyecto.repositorios;
 
 import co.edu.uniquindio.proyecto.dto.ProductoValido;
 import co.edu.uniquindio.proyecto.dto.ProductosPorUsuario;
-import co.edu.uniquindio.proyecto.entidades.Categoria;
-import co.edu.uniquindio.proyecto.entidades.Comentario;
-import co.edu.uniquindio.proyecto.entidades.Producto;
-import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.entidades.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -70,6 +67,9 @@ public interface ProductoRepo extends JpaRepository<Producto, Integer> {
 
     @Query("select p from Producto p where :categoria member of p.categoriasProducto")
     List<Producto> listarPorCategoria(Categoria categoria);
+
+    @Query("select p from Producto p where p.codigoCiudad = :ciudad")
+    List<Producto> listarPorCiudad(Ciudad ciudad);
 
     @Query("select avg(c.calificacion) from Comentario c where c.codigoProducto.codigo = :codigo")
     Integer calcularPromedioCalificacion(Integer codigo);
