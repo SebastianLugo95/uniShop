@@ -27,7 +27,8 @@ public class Compra implements Serializable {
 
     @Id
     @Column(nullable = false)
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codigo;
 
     @ManyToOne
     @JoinColumn(nullable = false)
@@ -45,13 +46,11 @@ public class Compra implements Serializable {
 
     /**
      * Constructor con los datos obligatorios.
-     * @param codigo Código de la compra.
      * @param codigoUsuario Código del usuario que hizo la compra.
      * @param fechaCompra Fecha de la compra.
      * @param medioPago Medio de pago.
      */
-    public Compra(String codigo, Usuario codigoUsuario, LocalDate fechaCompra, String medioPago) {
-        this.codigo = codigo;
+    public Compra(Usuario codigoUsuario, LocalDate fechaCompra, String medioPago) {
         this.codigoUsuario = codigoUsuario;
         this.fechaCompra = fechaCompra;
         this.medioPago = medioPago;

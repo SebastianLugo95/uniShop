@@ -46,7 +46,7 @@ public class CompraTest {
     @Sql("classpath:compra.sql")
     public void crearCompra(){
         Usuario usuario = usuarioRepo.findById("123").orElse(null);
-        Compra compra = new Compra("740", usuario, LocalDate.now(), "PSE");
+        Compra compra = new Compra(usuario, LocalDate.now(), "PSE");
 
         Compra compraGuardada = compraRepo.save(compra);
         Assertions.assertNotNull(compraGuardada);

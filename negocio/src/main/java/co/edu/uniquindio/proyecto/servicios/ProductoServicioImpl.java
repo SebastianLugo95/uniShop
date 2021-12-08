@@ -2,10 +2,7 @@ package co.edu.uniquindio.proyecto.servicios;
 
 import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import co.edu.uniquindio.proyecto.entidades.*;
-import co.edu.uniquindio.proyecto.repositorios.CategoriaRepo;
-import co.edu.uniquindio.proyecto.repositorios.CompraRepo;
-import co.edu.uniquindio.proyecto.repositorios.DetalleCompraRepo;
-import co.edu.uniquindio.proyecto.repositorios.ProductoRepo;
+import co.edu.uniquindio.proyecto.repositorios.*;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
@@ -22,12 +19,14 @@ public class ProductoServicioImpl implements  ProductoServicio{
     private final CategoriaRepo categoriaRepo;
     private final CompraRepo compraRepo;
     private final DetalleCompraRepo detalleCompraRepo;
+    private final UsuarioRepo usuarioRepo;
 
-    public ProductoServicioImpl(ProductoRepo productoRepo, CategoriaRepo categoriaRepo, CompraRepo compraRepo, DetalleCompraRepo detalleCompraRepo) {
+    public ProductoServicioImpl(ProductoRepo productoRepo, CategoriaRepo categoriaRepo, CompraRepo compraRepo, DetalleCompraRepo detalleCompraRepo, UsuarioRepo usuarioRepo) {
         this.productoRepo = productoRepo;
         this.categoriaRepo = categoriaRepo;
         this.compraRepo = compraRepo;
         this.detalleCompraRepo = detalleCompraRepo;
+        this.usuarioRepo = usuarioRepo;
     }
 
     @Override
@@ -93,7 +92,11 @@ public class ProductoServicioImpl implements  ProductoServicio{
 
     @Override
     public List<Producto> listarProductos(String codigoUsuario) throws Exception {
-        return null;
+        Optional<Usuario> usuarioBuscado = usuarioRepo.findById(codigoUsuario);
+
+        if(usuarioBuscado.isEmpty()) throw new Exception("El usuario con código " + codigoUsuario + " no existe");
+
+        return productoRepo.listarPorVendedor(codigoUsuario);
     }
 
     @Override

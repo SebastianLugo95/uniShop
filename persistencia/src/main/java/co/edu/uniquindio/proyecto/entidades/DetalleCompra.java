@@ -25,7 +25,8 @@ public class DetalleCompra implements Serializable {
 
     @Id
     @Column(nullable = false)
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codigo;
 
     @ManyToOne
     @JoinColumn(nullable = false)
@@ -43,14 +44,12 @@ public class DetalleCompra implements Serializable {
 
     /**
      * Constructor con los datos obligatorios
-     * @param codigo
      * @param codigoCompra
      * @param codigoProducto
      * @param unidades
      * @param precioProducto
      */
-    public DetalleCompra(String codigo, Compra codigoCompra, Producto codigoProducto, Integer unidades, Double precioProducto) {
-        this.codigo = codigo;
+    public DetalleCompra(Compra codigoCompra, Producto codigoProducto, Integer unidades, Double precioProducto) {
         this.codigoCompra = codigoCompra;
         this.codigoProducto = codigoProducto;
         this.unidades = unidades;
