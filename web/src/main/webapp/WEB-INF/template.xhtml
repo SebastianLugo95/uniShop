@@ -21,20 +21,21 @@
         <nav class="py-2 bg-light border-bottom">
             <div class="container d-flex flex-wrap">
                 <ul class="nav me-auto">
-                    <li class="nav-item"><a href="index.xhtml" class="nav-link link-dark px-2 active"
-                                            aria-current="page">Inicio</a></li>
-                    <li class="nav-item"><a href="crearProducto.xhtml"
-                                            class="nav-link link-dark px-2">Crear Producto</a></li>
+                    <li class="nav-item"><a href="index.xhtml"
+                                            class="nav-link link-dark px-2" >Categorias</a></li>
                 </ul>
                 <ul class="nav">
-                    <li jsf:rendered="#{!seguridadBean.autenticado}" class="nav-item"><a href="#" class="nav-link link-dark px-2" onClick="PF('login').show()">Login</a></li>
+                    <li jsf:rendered="#{!seguridadBean.autenticado}" class="nav-item"><a href="#"
+                                            class="nav-link link-dark px-2" onClick="PF('login').show()">Login</a></li>
                     <li jsf:rendered="#{!seguridadBean.autenticado}" class="nav-item"><a href="registrarUsuario.xhtml"
                                             class="nav-link link-dark px-2" >Registrarse</a></li>
-                    <li jsf:rendered="#{seguridadBean.autenticado}" class="nav-item"><a href="carrito.xhtml"
+                    <li jsf:rendered="#{seguridadBean.autenticado}" class="nav-item"><a href="/usuario/crearProducto.xhtml"
+                                            class="nav-link link-dark px-2">Crear Producto</a></li>
+                    <li jsf:rendered="#{seguridadBean.autenticado}" class="nav-item"><a href="/usuario/carrito.xhtml"
                                             class="nav-link link-dark px-2">Carrito</a></li>
-                    <li jsf:rendered="#{seguridadBean.autenticado}" class="nav-item"><a href="misProductos.xhtml"
+                    <li jsf:rendered="#{seguridadBean.autenticado}" class="nav-item"><a href="/usuario/misProductos.xhtml"
                                             class="nav-link link-dark px-2">Mis Productos</a></li>
-                    <li jsf:rendered="#{seguridadBean.autenticado}" class="nav-item"><a href="perfil.xhtml"
+                    <li jsf:rendered="#{seguridadBean.autenticado}" class="nav-item"><a href="/usuario/perfil.xhtml"
                                             class="nav-link link-dark px-2">Perfil</a></li>
                     <li jsf:rendered="#{seguridadBean.autenticado}" class="nav-item">
                         <h:form>

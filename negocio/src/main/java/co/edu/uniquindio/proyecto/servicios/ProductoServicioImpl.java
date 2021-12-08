@@ -1,11 +1,18 @@
 package co.edu.uniquindio.proyecto.servicios;
 
+import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.CategoriaRepo;
+import co.edu.uniquindio.proyecto.repositorios.CompraRepo;
+import co.edu.uniquindio.proyecto.repositorios.DetalleCompraRepo;
 import co.edu.uniquindio.proyecto.repositorios.ProductoRepo;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,10 +20,14 @@ import java.util.Optional;
 public class ProductoServicioImpl implements  ProductoServicio{
     private final ProductoRepo productoRepo;
     private final CategoriaRepo categoriaRepo;
+    private final CompraRepo compraRepo;
+    private final DetalleCompraRepo detalleCompraRepo;
 
-    public ProductoServicioImpl(ProductoRepo productoRepo, CategoriaRepo categoriaRepo) {
+    public ProductoServicioImpl(ProductoRepo productoRepo, CategoriaRepo categoriaRepo, CompraRepo compraRepo, DetalleCompraRepo detalleCompraRepo) {
         this.productoRepo = productoRepo;
         this.categoriaRepo = categoriaRepo;
+        this.compraRepo = compraRepo;
+        this.detalleCompraRepo = detalleCompraRepo;
     }
 
     @Override
@@ -108,4 +119,30 @@ public class ProductoServicioImpl implements  ProductoServicio{
 
         return productoRepo.calcularPromedioCalificacion(codigo);
     }
+
+    @Override
+    public Compra comprarProductos(Usuario usuario, ArrayList<ProductoCarrito> productos, String medioPago) throws Exception{
+        try {
+            Compra c = new Compra();
+            c.setFechaCompra(LocalDate.now());
+            c.setCodigoUsuario(usuario);
+            c.setMedioPago(medioPago);
+
+            Compra compraGuardada = compraRepo.save(c);
+
+            DetalleCompra dc;
+            for (ProductoCarrito p : productos){
+                dc = new DetalleCompra();
+                dc.setCodigoCompra(compraGuardada);
+                dc.setPrecioProducto(p.getPrecio());
+                dc.setUnidades((p.getUnidades()));
+                dc.setCodigoProducto(productoRepo.findById(p.getCodigo()).get());
+                detalleCompraRepo.save(dc);
+            }
+            return compraGuardada;
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
 }

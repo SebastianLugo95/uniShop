@@ -47,6 +47,9 @@ public class ProductoBean implements Serializable {
     @Value("${upload.url}")
     private String urlUploads;
 
+    @Value("#{seguridadBean.usuarioSesion}")
+    private Usuario usuarioSesion;
+
     @Autowired
     private ProductoServicio productoServicio;
 
@@ -66,18 +69,19 @@ public class ProductoBean implements Serializable {
 
     public void crearProducto(){
         try {
-            if(!imagenes.isEmpty()){
-                Usuario usuario = usuarioServicio.obtenerUsuario("123");
-                producto.setCodigoVendedor(usuario);
-                producto.setImagenesProducto(imagenes);
-                producto.setFechaLimite(LocalDate.now().plusMonths(2));
-                productoServicio.publicarProducto(producto);
+            if(usuarioSesion != null){
+                if(!imagenes.isEmpty()){
+                    producto.setCodigoVendedor(usuarioSesion);
+                    producto.setImagenesProducto(imagenes);
+                    producto.setFechaLimite(LocalDate.now().plusMonths(2));
+                    productoServicio.publicarProducto(producto);
 
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Producto Creado Exitosamente");
-                FacesContext.getCurrentInstance().addMessage("msj-bean", msg);
-            }else{
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es necesario subir al menos una imagen");
-                FacesContext.getCurrentInstance().addMessage("msj-bean", msg);
+                    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Producto Creado Exitosamente");
+                    FacesContext.getCurrentInstance().addMessage("msj-bean", msg);
+                }else{
+                    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es necesario subir al menos una imagen");
+                    FacesContext.getCurrentInstance().addMessage("msj-bean", msg);
+                }
             }
         } catch (Exception e) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
