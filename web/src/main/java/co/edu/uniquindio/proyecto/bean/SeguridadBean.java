@@ -94,6 +94,20 @@ public class SeguridadBean implements Serializable {
         }
     }
 
+    public String recuperarConstrasena(){
+        if(!email.isEmpty()){
+            try {
+                usuarioServicio.recuperarContrasena(email);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Correo enviado satisfactoriamente");
+                FacesContext.getCurrentInstance().addMessage("recuperar-bean", fm);
+            }catch (Exception e){
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
+                FacesContext.getCurrentInstance().addMessage("recuperar-bean", fm);
+            }
+        }
+        return null;
+    }
+
     public String cerrarSesion() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "/index?faces-redirect=true";

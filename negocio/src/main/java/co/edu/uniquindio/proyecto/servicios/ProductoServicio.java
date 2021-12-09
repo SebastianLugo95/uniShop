@@ -44,5 +44,4 @@ public interface ProductoServicio {
 
     Compra comprarProductos(Usuario usuario, ArrayList<ProductoCarrito> productos, String medioPago) throws Exception;
 
-
 }
