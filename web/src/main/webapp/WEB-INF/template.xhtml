@@ -36,7 +36,7 @@
                                             class="nav-link link-dark px-2">Carrito</a></li>
                     <li jsf:rendered="#{seguridadBean.autenticado}" class="nav-item"><a href="/usuario/misProductos.xhtml"
                                             class="nav-link link-dark px-2">Mis Productos</a></li>
-                    <li jsf:rendered="#{seguridadBean.autenticado}" class="nav-item"><a href="/usuario/perfil.xhtml"
+                    <li jsf:rendered="#{seguridadBean.estaLogueado()}" class="nav-item"><a href="/usuario/perfil.xhtml"
                                             class="nav-link link-dark px-2">Perfil</a></li>
                     <li jsf:rendered="#{seguridadBean.autenticado}" class="nav-item">
                         <h:form>
