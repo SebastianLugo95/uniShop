@@ -76,8 +76,7 @@ public class SeguridadBean implements Serializable {
                 FacesContext.getCurrentInstance().addMessage("recuperar-bean", fm);
             }
         }
-        return null;
-
+        return "";
     }
 
     public String cerrarSesion() {
