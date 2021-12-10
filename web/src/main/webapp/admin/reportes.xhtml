@@ -24,6 +24,12 @@
                     Column
                 </div>
             </div>
+            <h4>Productos de cada categoría</h4>
+                        <p:chart type="pie" model="#{administradorBean.pieProductosCategoria}" style="width: 400px; height: 280px; margin-top: 10px"
+                                 rendered="#{administradorBean.pieProductosCategoria != null}"/>
+                                 <h4>Puntuación promedio de los productos</h4>
+                        <p:barChart model="#{administradorBean.barProductosCalificacion}" style="width: 700px; height: 400px; "
+                                    rendered="#{administradorBean.barProductosCalificacion != null}"/>
         </div>
 
     </ui:define>
