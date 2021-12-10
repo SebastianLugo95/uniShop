@@ -24,9 +24,9 @@
 
                 </ul>
                 <ul class="nav">
-                    <li jsf:rendered="#{!seguridadBean.autenticado}" class="nav-item"><a href="#"
+                    <li jsf:rendered="#{!seguridadBean.estaLogueado()}" class="nav-item"><a href="#"
                                             class="nav-link link-dark px-2" onClick="PF('login').show()">Login</a></li>
-                    <li jsf:rendered="#{!seguridadBean.autenticado}" class="nav-item"><a href="registrarUsuario.xhtml"
+                    <li jsf:rendered="#{!seguridadBean.estaLogueado()}" class="nav-item"><a href="registrarUsuario.xhtml"
                                             class="nav-link link-dark px-2" >Registrarse</a></li>
                     <li jsf:rendered="#{!seguridadBean.autenticado}" class="nav-item"><a href="#"
                                             class="nav-link link-dark px-2" onClick="PF('recuperar').show()">Recuperar Contraseña</a></li>
@@ -43,6 +43,21 @@
                             <p:menubar>
                                 <p:divider layout="vertical"/>
                                 <p:submenu label="#{seguridadBean.usuarioSesion.nombre}" icon="pi pi-fw pi-user" styleClass="nav-item">
+                                    <p:menuitem value="Perfil" icon="pi pi-fw pi-file"/>
+                                    <p:menuitem value="Salir" icon="pi pi-fw pi-sign-out" action="#{seguridadBean.cerrarSesion}"/>
+                                </p:submenu>
+                            </p:menubar>
+                        </h:form>
+                    </li>
+
+                    <li jsf:rendered="#{seguridadBean.admin}" class="nav-item"><a href="/admin/reportes.xhtml"
+                                                                                        class="nav-link link-dark px-2">Reportes</a></li>
+
+                    <li jsf:rendered="#{seguridadBean.admin}" class="nav-item">
+                        <h:form>
+                            <p:menubar>
+                                <p:divider layout="vertical"/>
+                                <p:submenu label="#{seguridadBean.adminSesion.nombre}" icon="pi pi-fw pi-user" styleClass="nav-item">
                                     <p:menuitem value="Perfil" icon="pi pi-fw pi-file"/>
                                     <p:menuitem value="Salir" icon="pi pi-fw pi-sign-out" action="#{seguridadBean.cerrarSesion}"/>
                                 </p:submenu>

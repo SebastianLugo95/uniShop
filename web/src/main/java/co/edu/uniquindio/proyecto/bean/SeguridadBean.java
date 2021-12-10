@@ -2,7 +2,9 @@ package co.edu.uniquindio.proyecto.bean;
 
 
 import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
+import co.edu.uniquindio.proyecto.entidades.Administrador;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.servicios.AdministradorServicioImpl;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
@@ -25,13 +27,22 @@ public class SeguridadBean implements Serializable {
     private boolean autenticado;
 
     @Getter @Setter
+    private boolean admin;
+
+    @Getter @Setter
     private String email,password;
 
     @Getter @Setter
     Usuario usuarioSesion;
 
+    @Getter @Setter
+    Administrador adminSesion;
+
     @Autowired
     private UsuarioServicio usuarioServicio;
+
+    @Autowired
+    private AdministradorServicioImpl administradorServicio;
 
     @Getter
     @Setter
@@ -49,20 +60,38 @@ public class SeguridadBean implements Serializable {
     public void inicializador(){
         this.subTotal = 0.0;
         this.productosCarrito = new ArrayList<>();
+        admin = false;
     }
 
     public String iniciarSesion(){
         if(!email.isEmpty()&&!password.isEmpty()){
-            try {
-                usuarioSesion = usuarioServicio.iniciarSesion(email, password);
-                autenticado = true;
-                return "/index?faces-redirect=true";
-            }catch (Exception e){
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
-                FacesContext.getCurrentInstance().addMessage("login-bean", fm);
+            if(esAdmin()) {
+                loguearAdmin();
+            } else {
+                try {
+                    usuarioSesion = usuarioServicio.iniciarSesion(email, password);
+                    autenticado = true;
+                } catch (Exception e) {
+                    FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
+                    FacesContext.getCurrentInstance().addMessage("login-bean", fm);
+                }
             }
+            return "/index?faces-redirect=true";
         }
         return null;
+    }
+
+    private boolean esAdmin() {
+        return administradorServicio.esAdmin(email);
+    }
+
+    private void loguearAdmin() {
+        try {
+            adminSesion = administradorServicio.iniciarSesion(email, password);
+            admin = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public String recuperarConstrasena(){
@@ -126,4 +155,7 @@ public class SeguridadBean implements Serializable {
 
     }
 
+    public boolean estaLogueado() {
+        return admin || autenticado;
+    }
 }

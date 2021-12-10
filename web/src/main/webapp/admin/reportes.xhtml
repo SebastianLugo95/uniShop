@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="../WEB-INF/template.xhtml">
+    <ui:define name="title">Reportes</ui:define>
+    <ui:define name="content">
+
+        <div class="container">
+            <div class="row row-cols-2">
+                <div class="col">
+                    Column
+                </div>
+                <div class="col">
+                    Column
+                </div>
+                <div class="col">
+                    Column
+                </div>
+            </div>
+            <h4>Productos de cada categoría</h4>
+                        <p:chart type="pie" model="#{administradorBean.pieProductosCategoria}" style="width: 400px; height: 280px; margin-top: 10px"
+                                 rendered="#{administradorBean.pieProductosCategoria != null}"/>
+                                 <h4>Puntuación promedio de los productos</h4>
+                        <p:barChart model="#{administradorBean.barProductosCalificacion}" style="width: 700px; height: 400px; "
+                                    rendered="#{administradorBean.barProductosCalificacion != null}"/>
+        </div>
+
+    </ui:define>
+</ui:composition>
+</html>
