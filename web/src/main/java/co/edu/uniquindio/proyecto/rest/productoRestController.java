@@ -88,6 +88,16 @@ public class productoRestController {
         }
     }
 
+    @GetMapping("/calificacion/{codigo}")
+    public ResponseEntity<?> promedioCalificacion(@PathVariable("codigo") Integer codigoProducto) {
+        try {
+            Integer promedio = productoServicio.calcularPromedioCalificacion(codigoProducto);
+            return ResponseEntity.status(200).body("El promedio de la calificación del producto es: " + promedio);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(new Notificacion(e.getMessage()));
+        }
+    }
+
 }
 
 
